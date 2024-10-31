@@ -110,5 +110,22 @@ public class Matrix {
         return new Matrix(rows, cols, newMatrix);
     }
 
+    public static Matrix addition(Matrix... m) {
+        Matrix start = m[0];
+        for (int i = 1; i < m.length; i++) {
+            start = start.add(m[i]);
+        }
+        return start;
+    }
 
+    public Matrix add(Matrix matrix) {
+        if (rows != matrix.getRows() || cols != matrix.getCols()) {
+            throw new IllegalArgumentException("The number of rows and columns is incorrect for matrix addition");
+        }
+        double[] result = new double[rows * cols];
+        for (int i = 0; i < base.length; i++) {
+            result[i] = base[i] + matrix.getBase()[i];
+        }
+        return new Matrix(rows, cols, result);
+    }
 }
