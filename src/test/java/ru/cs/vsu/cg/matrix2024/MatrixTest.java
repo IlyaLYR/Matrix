@@ -1,6 +1,7 @@
 package ru.cs.vsu.cg.matrix2024;
 
 import org.junit.jupiter.api.Test;
+import ru.cs.vsu.cg.matrix2024.matrix.Matrix;
 
 import static org.junit.jupiter.api.Assertions.*;
 
