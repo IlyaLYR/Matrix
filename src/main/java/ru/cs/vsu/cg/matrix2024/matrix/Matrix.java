@@ -1,7 +1,7 @@
 package ru.cs.vsu.cg.matrix2024.matrix;
 
 /**
- * Библиотека Math
+ * Класс Matrix (основная логика в данном классе)
  *
  * @author IlyaLYR
  */
@@ -52,6 +52,9 @@ public class Matrix {
     /*
     Геттеры и сеттеры
      */
+    public Matrix clone() { //вспомогательный метод клонирования матрицы
+        return new Matrix(this);
+    }
 
     /**
      * Получить количество строк для данной матрицы
@@ -156,36 +159,19 @@ public class Matrix {
      * @return новая матрица (транспонированная на основе старой)
      */
     public Matrix transposed() {
-        double[] transposed = new double[getCols() * getRows()];
-        for (int i = 0; i < getRows(); i++) {
-            for (int j = 0; j < getCols(); j++) {
-                transposed[j * getRows() + i] = getBase()[i * getCols() + j];
-            }
-        }
-        return new Matrix(getCols(), getRows(), transposed); //Метка - вернет ссылку или значение....
-    }
-
-    /**
-     * Статический метод для перемножения нескольких матриц
-     *
-     * @param matrix множество матриц которые необходимо перемножить
-     * @return матрица результат перемножения всех матриц
-     */
-    public static Matrix multiplication(Matrix... matrix) {
-        Matrix start = matrix[0];
-        for (int i = 1; i < matrix.length; i++) {
-            start = start.multiply(matrix[i]);
-        }
-        return start;
+        Matrix copy = this.clone();
+        copy.transpose();
+        return copy;
     }
 
     /**
      * Перемножение двух матриц
      *
      * @param matrix матрица-множитель
-     * @return результат перемножения двух матриц
      */
-    public Matrix multiply(Matrix matrix) {
+
+
+    public void multiply(Matrix matrix) {
         if (getCols() != matrix.getRows()) {
             throw new IllegalArgumentException("The number of rows and columns is incorrect for matrix multiplication");
         }
@@ -200,8 +186,20 @@ public class Matrix {
                 result[i * matrix.getCols() + j] = sum;
             }
         }
+        setCols(matrix.getCols());
+        setBase(result);
+    }
 
-        return new Matrix(getRows(), matrix.getCols(), result);
+    /**
+     * Перемножение двух матриц
+     *
+     * @param matrix матрица-множитель
+     * @return результат перемножения двух матриц в новой матрице
+     */
+    public Matrix multiplied(Matrix matrix) {
+        Matrix copy = this.clone();
+        copy.multiply(matrix);
+        return copy;
     }
 
     /**
@@ -210,7 +208,7 @@ public class Matrix {
      * @param number множитель
      * @return матрицу, результат перемножения числа и матрицы
      */
-    public Matrix multiply(double number) {
+    public Matrix multiplied(double number) {
         double[] newMatrix = new double[getRows() * getCols()];
         for (int i = 0; i < getBase().length; i++) {
             newMatrix[i] = getBase()[i] * number;
@@ -218,19 +216,6 @@ public class Matrix {
         return new Matrix(getRows(), getCols(), newMatrix);
     }
 
-    /**
-     * Статический метод для сложения нескольких матриц
-     *
-     * @param matrix множество матриц которые необходимо сложить
-     * @return матрица результат сложения всех матриц
-     */
-    public static Matrix addition(Matrix... matrix) {
-        Matrix start = matrix[0];
-        for (int i = 1; i < matrix.length; i++) {
-            start = start.add(matrix[i]);
-        }
-        return start;
-    }
 
     /**
      * Сложение двух матриц
@@ -259,22 +244,7 @@ public class Matrix {
         if (number == 0) {
             throw new IllegalArgumentException("You can't divide by zero!");
         }
-        return multiply(1 / number);
-    }
-
-    /**
-     * Статический метод для вычитания нескольких матриц
-     *
-     * @param matrix множество матриц
-     * @return матрица результат вычитания всех матриц
-     */
-    public static Matrix subtraction(Matrix... matrix) {
-        Matrix start = matrix[0];
-        for (int i = 1; i < matrix.length; i++) {
-            start = start.subtract(matrix[i]);
-        }
-        return start;
-
+        return multiplied(1 / number);
     }
 
     /**
@@ -284,7 +254,7 @@ public class Matrix {
      * @return результат вычитания двух матриц
      */
     public Matrix subtract(Matrix matrix) {
-        return add(matrix.multiply(-1));
+        return add(matrix.multiplied(-1));
     }
 
     /**
@@ -310,12 +280,5 @@ public class Matrix {
             unitMatrix[i * getRows() + i] = 1;
         }
         return new Matrix(getRows(), getCols(), unitMatrix);
-    }
-
-    public double determinant() { //TODO доделать определитель n-го порядка
-        if (this.rows != this.cols) {
-            throw new IllegalArgumentException("Incorrect matrix");
-        }
-        return 0;
     }
 }

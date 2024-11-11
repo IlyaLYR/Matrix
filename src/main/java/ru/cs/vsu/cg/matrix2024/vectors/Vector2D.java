@@ -1,150 +1,41 @@
 package ru.cs.vsu.cg.matrix2024.vectors;
 
+import ru.cs.vsu.cg.matrix2024.matrix.Matrix;
 
-/**
- * Вектор 2D
- */
-public class Vector2D {
-    private Vector vector;
-
+public class Vector2D extends VectorWrapper<Vector2D> {
     /**
-     * Конструктор Вектора2D
+     * Конструктор Матрица -> Вектор 2D
      *
-     * @param base значения
+     * @param matrix основная матрица
      */
-    public Vector2D(double[] base) {
-        vector = new Vector(2, base);
+    private Vector2D(Matrix matrix) {
+        super(2, matrix.getBase());
     }
 
     /**
-     * Конструктор нулевого вектора
+     * Конструктор нулевой вектора 2D
      */
     public Vector2D() {
-        vector = new Vector(2);
+        super(2);
     }
 
-
     /**
-     * Конструктор Вектора2D на основе общего вектора
-     * @param vector основной вектор
-     */
-    private Vector2D(Vector vector) {
-        setVector(vector);
-    }
-
-    /*
-      Геттеры и сеттеры
-     */
-
-    /**
-     * Получить основной вектор
+     * Конструктор Вектора 2D
      *
-     * @return основная вектор
+     * @param base данные в виде двумерного массива
      */
-    public Vector getVector() {
-        return vector;
+    public Vector2D(double[] base) {
+        super(2, base);
     }
 
     /**
-     * Изменить основной вектор
+     * Метод-обертка для общей реализации
      *
-     * @param vector новый основной вектор
+     * @param matrix основная матрица
+     * @return Вектор N
      */
-    private void setVector(Vector vector) {
-        this.vector = new Vector(vector.getBase());
-    }
-
-    /**
-     * Количество строк в векторе
-     * @return количество строк
-     */
-    public int getRows(){
-        return getVector().getRows();
-    }
-
-    /**
-     * Количество столбцов векторе
-     * @return количество столбцов
-     */
-    public int getColumns(){
-        return getVector().getCols();
-    }
-
-    /**
-     * Вывод вектора в консоль в виде
-     * [A11, A12,
-     * A21, A22]
-     */
-    public void print() {
-        getVector().print();
-    }
-    /**
-     * Транспонировать текущий вектор
-     */
-    public void transpose() {
-        getVector().transpose();
-    }
-
-    /**
-     * Перемножение Векторов
-     *
-     * @param vector вектор-множитель
-     * @return результат перемножения векторов
-     */
-    public Vector2D multiply(Vector vector) {
-        return new Vector2D(getVector().multiply(vector));
-    }
-    /**
-     * Умножение вектора на число
-     *
-     * @param number множитель
-     * @return вектор, результат перемножения числа и вектора
-     */
-    public Vector2D multiply(double number) {
-        return new Vector2D(getVector().multiply(number));
-    }
-    /**
-     * Сложение Векторов
-     *
-     * @param vector вектор-слагаемое
-     * @return результат сложения двух векторов
-     */
-    public Vector2D add(Vector vector) {
-        return new Vector2D(getVector().add(vector));
-    }
-
-    /**
-     * Вычитание двух векторов
-     *
-     * @param vector вектор-вычитаемое
-     * @return результат вычитания двух векторов
-     */
-    public Vector2D subtract(Vector vector) {
-        return new Vector2D(getVector().subtract(vector));
-    }
-
-    /**
-     * Вычислить длину вектора
-     *
-     * @return длинна вектора
-     */
-    public double length() {
-        return getVector().length();
-    }
-
-    /**
-     * Нормализация вектора
-     *
-     * @return нормализованный вектор
-     */
-    public Vector2D normalizedVector() {
-        return new Vector2D(getVector().normalizedVector());
-    }
-
-    /**
-     * Нормализация текущего вектора
-     */
-    public void normalizeVector() {
-        setVector(getVector().normalizedVector());
+    @Override
+    public Vector2D newMatrix(Matrix matrix) {
+        return new Vector2D(matrix);
     }
 }
