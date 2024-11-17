@@ -1,0 +1,188 @@
+@startuml
+class Matrix2D {
++ <<Create>> Matrix2D(double[])
++ <<Create>> Matrix2D(double[][])
++ <<Create>> Matrix2D()
++ <<Create>> Matrix2D(boolean)
+}
+
+class Vector4R {
++ <<Create>> Vector4R(double[])
++ <<Create>> Vector4R()
+}
+
+class SquareMatrix {
++ <<Create>> SquareMatrix(int,double[])
++ <<Create>> SquareMatrix(int,double[][])
++ <<Create>> SquareMatrix(int)
++ <<Create>> SquareMatrix(int,boolean)
+- <<Create>> SquareMatrix(int,int,double[])
++ void transpose()
++ AbstractMatrix<?> pows(int)
++ void pow(int)
++ void multiply(SquareMatrix)
+}
+
+interface VectorsActions {
+~ double[] getVector()
+~ int getRows()
+~ int getCols()
+~ double getLength()
+~ AbstractMatrix<?> normalize()
+}
+
+class RecMatrix {
++ <<Create>> RecMatrix(int,int)
++ <<Create>> RecMatrix(int,int,double[])
++ <<Create>> RecMatrix(int,int,double[][])
+- void validateNonSquare(int,int)
++ void transpose()
+}
+
+class VectorC {
++ <<Create>> VectorC(int)
++ <<Create>> VectorC(int,double[])
++ double[] getVector()
+}
+
+class Vector2C {
++ <<Create>> Vector2C(double[])
++ <<Create>> Vector2C()
+}
+
+class Vector3C {
++ <<Create>> Vector3C(double[])
++ <<Create>> Vector3C()
+}
+
+class MatrixFactory {
+- {static} Map<String,Function<double[],AbstractMatrix<?>>> fixedMatrixRegistry
++ {static} void registerFixedMatrix(String,Function<double[],AbstractMatrix<?>>)
++ {static} AbstractMatrix<?> createMatrix(int,int,double[])
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+abstract class AbstractMatrix {
+# Matrix matrix
++ <<Create>> AbstractMatrix(int,int)
++ <<Create>> AbstractMatrix(int,int,double[])
++ <<Create>> AbstractMatrix(int,int,double[][])
++ <<Create>> AbstractMatrix(int,int,boolean)
++ int getRows()
++ int getCols()
+# Matrix getMatrix()
+# void setMatrix(Matrix)
++ double get(int,int)
++ void set(int,int,double)
++ void print()
+# AbstractMatrix<?> newMatrix(Matrix)
++ void add(T)
++ AbstractMatrix<?> added(T)
++ void subtract(T)
++ AbstractMatrix<?> subtracted(T)
++ void multiply(double)
++ AbstractMatrix<?> multiplied(double)
++ void divide(double)
++ AbstractMatrix<?> divided(double)
++ AbstractMatrix<?> multiplied(AbstractMatrix<?>)
++ AbstractMatrix<?> transposed()
++ String toString()
+}
+
+
+class AbstractMatrix$Matrix {
+- int rows
+- int cols
+- double[] base
++ <<Create>> Matrix(int,int,double[])
++ <<Create>> Matrix(int,int,double[][])
++ <<Create>> Matrix(int,int)
++ <<Create>> Matrix(int,int,boolean)
++ void initialize(int,int,double[])
++ boolean equals(Object)
++ int hashCode()
++ String toString()
++ double get(int,int)
++ void set(int,int,double)
+- void validateIndex(int,int)
++ int getRows()
++ int getCols()
++ double[] getBase()
+- void setRows(int)
+- void setCols(int)
+- void setBase(double[])
++ void print()
++ Matrix transposed()
++ Matrix multiplied(Matrix)
++ Matrix multiplied(double)
++ Matrix added(Matrix)
++ Matrix subtracted(Matrix)
++ Matrix divided(double)
++ Matrix createUnitMatrix()
+- {static} double[] unwrap(double[][])
++ Matrix pows(int)
+}
+
+
+class MatrixUtils {
++ {static} AbstractMatrix<?> multiplication(AbstractMatrix<?>)
+}
+
+class VectorR {
++ <<Create>> VectorR(int)
++ <<Create>> VectorR(int,double[])
++ double[] getVector()
+}
+
+class Matrix4D {
++ <<Create>> Matrix4D(double[])
++ <<Create>> Matrix4D(double[][])
++ <<Create>> Matrix4D()
++ <<Create>> Matrix4D(boolean)
+}
+
+class Vector2R {
++ <<Create>> Vector2R(double[])
++ <<Create>> Vector2R()
+}
+
+class Vector4C {
++ <<Create>> Vector4C(double[])
++ <<Create>> Vector4C()
+}
+
+class Matrix3D {
++ <<Create>> Matrix3D(double[])
++ <<Create>> Matrix3D(double[][])
++ <<Create>> Matrix3D()
++ <<Create>> Matrix3D(boolean)
+}
+
+class Vector3R {
++ <<Create>> Vector3R(double[])
++ <<Create>> Vector3R()
+}
+
+
+
+SquareMatrix <|-- Matrix2D
+VectorR <|-- Vector4R
+AbstractMatrix <|-- SquareMatrix
+AbstractMatrix <|-- RecMatrix
+VectorsActions <|.. VectorC
+AbstractMatrix <|-- VectorC
+VectorR <|-- Vector2C
+VectorR <|-- Vector3C
+AbstractMatrix +.. AbstractMatrix$Matrix
+VectorsActions <|.. VectorR
+AbstractMatrix <|-- VectorR
+SquareMatrix <|-- Matrix4D
+VectorR <|-- Vector2R
+VectorR <|-- Vector4C
+SquareMatrix <|-- Matrix3D
+VectorR <|-- Vector3R
+@enduml
