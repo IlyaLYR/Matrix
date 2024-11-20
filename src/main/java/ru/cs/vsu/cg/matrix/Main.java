@@ -1,12 +1,15 @@
 package ru.cs.vsu.cg.matrix;
 
-import ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D;
+import ru.cs.vsu.cg.matrix.core.AbstractMatrix;
+import ru.cs.vsu.cg.matrix.core.MatrixFactory;
+import ru.cs.vsu.cg.matrix.types.SquareMatrix;
 
 public class Main {
 
     public static void main(String[] args) {
-        Matrix2D m1 = new Matrix2D(new double[]{1, 2, 3, 4});
-        Matrix2D m2 = new Matrix2D(new double[]{1, 2, 3, 4});
-        Matrix2D m3 = new Matrix2D(new double[]{1, 2, 3, 4});
+        SquareMatrix a = new SquareMatrix(5, true);
+        a.print();
+        AbstractMatrix<?> abstractMatrix = MatrixFactory.createMatrix(2, 2, new double[]{1, 2, 3, 4});
+
     }
 }

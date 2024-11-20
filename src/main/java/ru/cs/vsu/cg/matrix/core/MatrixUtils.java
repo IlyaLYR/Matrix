@@ -9,7 +9,6 @@ public class MatrixUtils {
      * @param matrix множество матриц (векторов) которые необходимо перемножить
      * @return матрица результат перемножения всех матриц
      */
-    @SafeVarargs
     public static AbstractMatrix<?> multiplication(AbstractMatrix<?>... matrix) {
         AbstractMatrix<?> start = matrix[0];
         for (int i = 1; i < matrix.length; i++) {

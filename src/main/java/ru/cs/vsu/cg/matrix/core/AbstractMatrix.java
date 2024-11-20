@@ -621,7 +621,7 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
      */
     public AbstractMatrix<?> multiplied(AbstractMatrix<?> matrix) {
         Matrix result = getMatrix().multiplied(matrix.getMatrix());
-        return MatrixFactory.createMatrix(result.rows, result.cols, result.base);
+        return MatrixFactory.createMatrix(result.rows, result.cols, result.base); //Можно подавить матрицу в фабрику... сделаю.....
     }
 
     /**

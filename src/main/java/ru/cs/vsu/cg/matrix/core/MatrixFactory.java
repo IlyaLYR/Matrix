@@ -4,7 +4,6 @@ import ru.cs.vsu.cg.matrix.types.RecMatrix;
 import ru.cs.vsu.cg.matrix.types.SquareMatrix;
 import ru.cs.vsu.cg.matrix.types.VectorC;
 import ru.cs.vsu.cg.matrix.types.VectorR;
-import ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D;
 import ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D;
 import ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D;
 import ru.cs.vsu.cg.matrix.typesVectors.*;
@@ -19,8 +18,6 @@ public class MatrixFactory {
     private static final Map<String, Function<double[], AbstractMatrix<?>>> fixedMatrixRegistry = new HashMap<>();
 
     static {
-        // Регистрация фиксированных матриц по умолчанию
-        registerFixedMatrix("2x2", Matrix2D::new);
         registerFixedMatrix("3x3", Matrix3D::new);
         registerFixedMatrix("4x4", Matrix4D::new);
         registerFixedMatrix("2row", Vector2R::new);
@@ -43,17 +40,14 @@ public class MatrixFactory {
         if (fixedMatrixRegistry.containsKey(fixedKey)) {
             return fixedMatrixRegistry.get(fixedKey).apply(base);
         }
-        // Проверка на квадратные матрицы
         if (rows == cols) {
             return new SquareMatrix(rows, base);
         }
-        // Проверка на векторы
         if (cols == 1) {
             return new VectorC(rows, base);
         } else if (rows == 1) {
             return new VectorR(cols, base);
         }
-        // Если это не квадратная матрица и не вектор, возвращаем прямоугольную матрицу
         return new RecMatrix(rows, cols, base);
     }
 }
