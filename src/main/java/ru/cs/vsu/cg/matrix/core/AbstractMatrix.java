@@ -3,6 +3,8 @@
  */
 package ru.cs.vsu.cg.matrix.core;
 
+import ru.cs.vsu.cg.matrix.types.VectorR;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -459,9 +461,64 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
             return result;
         }
 
+
+        /**
+         * Метод вычисления длинны вектора
+         *
+         * @return число
+         */
+        public double getLength() {
+            double[] vector = getBase();
+            double sum = 0;
+            for (double v : vector) {
+                sum += v * v;
+            }
+            return Math.sqrt(sum);
+        }
+
+        public Matrix crossProduct(Matrix other) {
+            if (getRows() != 3 || other.getRows() != 3) {
+                throw new IllegalArgumentException("Векторное произведение определено только для векторов размерности 3");
+            }
+            double[] a = getBase();
+            double[] b = other.getBase();
+
+            double[] result = new double[3];
+            result[0] = a[1] * b[2] - a[2] * b[1];
+            result[1] = a[2] * b[0] - a[0] * b[2];
+            result[2] = a[0] * b[1] - a[1] * b[0];
+
+            return new Matrix(getRows(), getCols(), result);
+        }
+
+
+        // Нормализовать вектор (привести к единичной длине)
+        public Matrix normalize() {
+            double length = getLength();
+            if (length == 0) {
+                throw new ArithmeticException("Невозможно нормализовать нулевой вектор.");
+            }
+            double[] vector = getBase();
+            double[] normalized = new double[vector.length];
+            for (int i = 0; i < vector.length; i++) {
+                normalized[i] = vector[i] / length;
+            }
+            return new Matrix(getRows(), getCols(), normalized);
+        }
+
     }
 
     //Геттеры сеттеры
+
+
+    /**
+     * Значения матрицы в виде одномерного массива
+     *
+     * @return одномерный массив значений матрицы
+     */
+    public double[] getBase() {
+        return matrix.getBase();
+    }
 
     /**
      * Получить количество строк
@@ -528,14 +585,12 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
     }
 
     /**
-     * Метод -> обращение к фабрике для создания матрицы
+     * Метод -> вспомогательный
      *
      * @param matrix основная матрица
      * @return конкретный объект матрицу
      */
-    protected AbstractMatrix<?> newMatrix(Matrix matrix) {
-        return MatrixFactory.createMatrix(matrix.rows, matrix.cols, matrix.base);
-    }
+    protected abstract T newMatrix(Matrix matrix);
 
     /**
      * Сложение матриц
@@ -552,7 +607,7 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
      * @param other слагаемое
      * @return новая матрица - результат
      */
-    public AbstractMatrix<?> added(T other) {
+    public T added(T other) {
         return newMatrix(matrix.added(other.getMatrix()));
     }
 
@@ -571,7 +626,7 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
      * @param other вычитаемое
      * @return новая матрица - результат
      */
-    public AbstractMatrix<?> subtracted(T other) {
+    public T subtracted(T other) {
         return newMatrix(matrix.subtracted(other.getMatrix()));
     }
 
@@ -590,7 +645,7 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
      * @param number множитель
      * @return новая матрица - результат
      */
-    public AbstractMatrix<?> multiplied(double number) {
+    public T multiplied(double number) {
         return newMatrix(matrix.multiplied(number));
     }
 
@@ -609,29 +664,8 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
      * @param number делитель
      * @return новая матрица - результат
      */
-    public AbstractMatrix<?> divided(double number) {
+    public T divided(double number) {
         return newMatrix(matrix.divided(number));
-    }
-
-    /**
-     * Умножение матрицы на матрицу
-     *
-     * @param matrix множитель
-     * @return новая матрица(возможна смена самого объекта)
-     */
-    public AbstractMatrix<?> multiplied(AbstractMatrix<?> matrix) {
-        Matrix result = getMatrix().multiplied(matrix.getMatrix());
-        return MatrixFactory.createMatrix(result.rows, result.cols, result.base); //Можно подавить матрицу в фабрику... сделаю.....
-    }
-
-    /**
-     * Транспонирование матрицы
-     *
-     * @return транспонированная матрица
-     */
-    public AbstractMatrix<?> transposed() {
-        Matrix result = getMatrix().transposed();
-        return MatrixFactory.createMatrix(result.rows, result.cols, result.base);
     }
 
     /**

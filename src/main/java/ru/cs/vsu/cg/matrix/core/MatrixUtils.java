@@ -2,50 +2,24 @@ package ru.cs.vsu.cg.matrix.core;
 
 public class MatrixUtils {
 
-
-    /**
-     * Статический метод для перемножения нескольких матриц и векторов одной размерности
-     *
-     * @param matrix множество матриц (векторов) которые необходимо перемножить
-     * @return матрица результат перемножения всех матриц
-     */
-    public static AbstractMatrix<?> multiplication(AbstractMatrix<?>... matrix) {
-        AbstractMatrix<?> start = matrix[0];
-        for (int i = 1; i < matrix.length; i++) {
-            start = start.multiplied(matrix[i]);
+    public static <T extends VectorWrapperC<T>> double dotProduct(T v1, T v2, double angle) {
+        return v1.getLength() * v2.getLength() * Math.cos(angle);
+    }
+    @SafeVarargs
+    public static <T extends VectorWrapperC<T>> T add(T... vectors) {
+        T vector = vectors[0];
+        for (int i = 1; i < vectors.length; i++) {
+            vector.add(vectors[i]);
         }
-        return start;
+        return vector;
     }
 
-//    /**
-//     * Статический метод для сложения нескольких матриц и векторов одной размерности
-//     *
-//     * @param matrix множество матриц (векторов) которые необходимо сложить
-//     * @return матрица результат сложения всех матриц
-//     */
-//    @SafeVarargs
-//    public static <T extends Solver<T>> T addition(T... matrix) {
-//        T start = matrix[0];
-//        for (int i = 1; i < matrix.length; i++) {
-//            start = start.add(matrix[i]);
-//        }
-//        return start;
-//    }
-//
-//    /**
-//     * Статический метод для вычитания нескольких матриц и векторов одной размерности
-//     *
-//     * @param matrix множество матриц (векторов)
-//     * @return матрица результат вычитания всех матриц
-//     */
-//    @SafeVarargs
-//    public static <T extends Solver<T>> T subtraction(T... matrix) {
-//        T start = matrix[0];
-//        for (int i = 1; i < matrix.length; i++) {
-//            start = start.subtract(matrix[i]);
-//        }
-//        return start;
-//    }
-
-
+    @SafeVarargs
+    public static <T extends MatrixWrapper<T, ?>> T multiplied(T... matrix) {
+        T result = matrix[0];
+        for (int i = 1; i < matrix.length; i++) {
+            result.multiply(matrix[i]);
+        }
+        return result;
+    }
 }
