@@ -3,226 +3,244 @@ package ru.cs.vsu.cg.matrix.core;
 import ru.cs.vsu.cg.matrix.types.VectorC;
 
 /**
- * Класс-обертка для вектора-столбца заданного размера
+ * Абстрактный класс-обертка для вектора-столбца фиксированного размера.
+ * <p>
+ * Этот класс предоставляет методы для выполнения основных операций над векторами-столбцами, таких как сложение, вычитание,
+ * умножение на число, нормализация и вычисление длины. Абстрактный метод `newMatrix` позволяет наследникам создавать
+ * новые экземпляры конкретного типа вектора-столбца.
  *
- * @param <T> класс вектор-столбец
+ * @param <T> конкретный класс, реализующий вектор-столбец.
  */
 public abstract class VectorWrapperC<T extends VectorWrapperC<T>> {
     /**
-     * Вектор-столбец
+     * Вектор-столбец.
      */
-    VectorC vector;
+    private VectorC vector;
+
+    // Конструкторы
 
     /**
-     * Конструктор нулевого вектора-столбца
+     * Конструктор для создания нулевого вектора-столбца заданной размерности.
      *
-     * @param n количество элементов
+     * @param n количество элементов вектора.
      */
     public VectorWrapperC(int n) {
         vector = new VectorC(n);
     }
 
     /**
-     * Конструктор вектор-столбца
+     * Конструктор для создания вектора-столбца с заданными элементами.
      *
-     * @param n    количество элементов
-     * @param base элементы вектора
+     * @param n    количество элементов.
+     * @param base массив элементов вектора.
      */
     public VectorWrapperC(int n, double[] base) {
         vector = new VectorC(n, base);
     }
 
-
-    //Геттеры сеттеры
+    // Геттеры и сеттеры
 
     /**
-     * Получить значения вектора
+     * Получить массив элементов вектора.
      *
-     * @return массив
+     * @return массив элементов.
      */
     public double[] getBase() {
         return vector.getBase();
     }
 
     /**
-     * Получить количество строк
+     * Получить количество строк в векторе.
      *
-     * @return значение
+     * @return количество строк.
      */
     public int getRows() {
         return vector.getRows();
     }
 
     /**
-     * Получить количество столбцов
+     * Получить количество столбцов в векторе.
      *
-     * @return значение
+     * @return количество столбцов (всегда 1 для вектора-столбца).
      */
     public int getCols() {
         return vector.getCols();
     }
 
     /**
-     * Получит тело матрицы
+     * Получить внутренний объект вектора-столбца.
      *
-     * @return матрица - базовый объект
+     * @return внутренний объект `VectorC`.
      */
     protected VectorC getVector() {
         return vector;
     }
 
     /**
-     * Изменить тело матрицы
+     * Задать внутренний объект вектора-столбца.
+     *
+     * @param vector объект `VectorC`.
      */
     protected void setVector(VectorC vector) {
         this.vector = vector;
     }
 
+    // Основные операции
+
     /**
-     * Получить элементы по индексу
+     * Получить элемент вектора по индексу.
      *
-     * @param row строка
-     * @param col столбец
-     * @return значение
+     * @param row индекс элемента.
+     * @param col индекс столбца (всегда 0 для вектора-столбца).
+     * @return значение элемента.
      */
     public double get(int row, int col) {
         return vector.get(row, col);
     }
 
-
     /**
-     * Изменить значение по индексу
+     * Установить элемент вектора по индексу.
      *
-     * @param row   строка
-     * @param col   столбец
-     * @param value значение
+     * @param row   индекс строки.
+     * @param col   индекс столбца (всегда 0).
+     * @param value новое значение.
      */
     public void set(int row, int col, double value) {
         vector.set(row, col, value);
     }
 
     /**
-     * Вывод матрицы
-     */
-    public void print() {
-        vector.print();
-    }
-
-
-    /**
-     * Вспомогательный метод
+     * Создать новый экземпляр конкретного вектора-столбца.
      *
-     * @param vector вектор-столбец
-     * @return конкретный тип вектора
+     * @param vector внутренний объект `VectorC`.
+     * @return новый экземпляр конкретного типа вектора.
      */
     public abstract T newMatrix(VectorC vector);
 
+    // Арифметические операции
+
     /**
-     * Сложение матриц
+     * Сложить текущий вектор с другим.
      *
-     * @param other слагаемое
+     * @param other вектор-столбец для сложения.
      */
     public void add(T other) {
         setVector(vector.added(other.getVector()));
     }
 
     /**
-     * Сложение матриц
+     * Создать новый вектор как сумму текущего и другого.
      *
-     * @param other слагаемое
-     * @return новая матрица - результат
+     * @param other вектор-столбец для сложения.
+     * @return новый вектор-столбец.
      */
     public T added(T other) {
         return newMatrix(vector.added(other.getVector()));
     }
 
     /**
-     * Вычитание матриц
+     * Вычесть другой вектор из текущего.
      *
-     * @param other вычитаемое
+     * @param other вектор-столбец для вычитания.
      */
     public void subtract(T other) {
         setVector(vector.subtracted(other.getVector()));
     }
 
     /**
-     * Вычитание матриц
+     * Создать новый вектор как разность текущего и другого.
      *
-     * @param other вычитаемое
-     * @return новая матрица - результат
+     * @param other вектор-столбец для вычитания.
+     * @return новый вектор-столбец.
      */
     public T subtracted(T other) {
         return newMatrix(vector.subtracted(other.getVector()));
     }
 
     /**
-     * Умножение матрицы на число
+     * Умножить текущий вектор на число.
      *
-     * @param number множитель
+     * @param number множитель.
      */
     public void multiply(double number) {
         setVector(vector.multiplied(number));
     }
 
     /**
-     * Умножение матрицы на число
+     * Создать новый вектор как результат умножения текущего на число.
      *
-     * @param number множитель
-     * @return новая матрица - результат
+     * @param number множитель.
+     * @return новый вектор-столбец.
      */
     public T multiplied(double number) {
         return newMatrix(vector.multiplied(number));
     }
 
     /**
-     * Деление матрицы на число
+     * Разделить текущий вектор на число.
      *
-     * @param number делитель
+     * @param number делитель.
      */
     public void divide(double number) {
         setVector(vector.divided(number));
     }
 
     /**
-     * Деление матрицы на число
+     * Создать новый вектор как результат деления текущего на число.
      *
-     * @param number делитель
-     * @return новая матрица - результат
+     * @param number делитель.
+     * @return новый вектор-столбец.
      */
     public T divided(double number) {
         return newMatrix(vector.divided(number));
     }
 
-    /**
-     * Вывод в консоль объекта
-     *
-     * @return текст
-     */
-    @Override
-    public String toString() {
-        return vector.toString();
-    }
+    // Дополнительные операции
 
     /**
-     * Длинна вектора
+     * Вычислить длину вектора.
      *
-     * @return длинна вектора
+     * @return длина вектора.
      */
     public double getLength() {
-        return getVector().getLength();
+        return vector.getLength();
     }
 
-
     /**
-     * Нормализация вектора
+     * Нормализовать текущий вектор.
      *
-     * @return вектор-столбец
+     * @return новый нормализованный вектор-столбец.
      */
     public T normalize() {
         return newMatrix(vector.normalize());
     }
 
+    /**
+     * Вычислить векторное произведение текущего вектора с другим.
+     *
+     * @param other другой вектор-столбец.
+     * @return новый вектор-столбец, являющийся результатом операции.
+     */
     public T crossProduct(T other) {
         return newMatrix(vector.crossProduct(other.getVector()));
+    }
+
+    // Прочее
+
+    /**
+     * Печать текущего вектора в консоль.
+     */
+    public void print() {
+        vector.print();
+    }
+
+    /**
+     * Представление текущего вектора в виде строки.
+     *
+     * @return строковое представление вектора.
+     */
+    @Override
+    public String toString() {
+        return vector.toString();
     }
 }

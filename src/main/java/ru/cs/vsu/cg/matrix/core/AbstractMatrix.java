@@ -3,8 +3,6 @@
  */
 package ru.cs.vsu.cg.matrix.core;
 
-import ru.cs.vsu.cg.matrix.types.VectorR;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -16,15 +14,20 @@ import java.util.Objects;
 public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
 
     /**
-     * Объект Matrix - основой исполнитель
+     * Основной объект, содержащий реализацию логики работы с матрицами.
      */
     protected Matrix matrix;
 
     /**
-     * Нулевая матрица
+     * Базовый абстрактный класс для работы с матрицами различных типов
+     * (прямоугольная, квадратная, вектор-строка, вектор-столбец).
+     * <p></p>
+     * Конструкторы позволяют создавать матрицы различных типов: нулевые, единичные,
+     * с использованием одномерных и двумерных массивов.
      *
-     * @param row количество строк
-     * @param col количество столбцов
+     * @param row количество строк.
+     * @param col количество столбцов.
+     * @throws IllegalArgumentException если количество строк или столбцов меньше 1.
      */
     public AbstractMatrix(int row, int col) {
         matrix = new Matrix(row, col);
@@ -64,11 +67,12 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
     }
 
     /**
-     * Класс Matrix (основная логика в данном классе)
-     *
-     * @author IlyaLYR
+     * Вложенный класс для реализации базовой логики работы с матрицами.
+     * Обеспечивает основные операции, такие как сложение, умножение, транспонирование,
+     * а также вспомогательные функции (нормализация, возведение в степень и др.).
+     * <p>Матрица хранится в виде одномерного массива для оптимизации операций
+     * с памятью и вычислений.</p>
      */
-
     protected static class Matrix {
         /**
          * Строки
@@ -321,10 +325,21 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
         }
 
         /**
-         * Метод для перемножения матриц
+         * Умножение текущей матрицы на другую матрицу.
          *
-         * @param matrix матрица-множитель
-         * @return произведение матриц
+         * @param matrix матрица-множитель.
+         *               Количество столбцов текущей матрицы должно быть равно
+         *               количеству строк матрицы-множителя.
+         * @return новая матрица, являющаяся результатом умножения.
+         * @throws IllegalArgumentException если размеры матриц не соответствуют
+         *                                  условию умножения.
+         *                                  <p>
+         *                                  Пример:
+         *                                  <pre>{@code
+         *                                                                                                    Matrix m1 = new Matrix(2, 3, new double[] {1, 2, 3, 4, 5, 6});
+         *                                                                                                    Matrix m2 = new Matrix(3, 2, new double[] {7, 8, 9, 10, 11, 12});
+         *                                                                                                    Matrix result = m1.multiplied(m2);
+         *                                                                                                    }</pre>
          */
         public Matrix multiplied(Matrix matrix) {
             if (getCols() != matrix.getRows()) {
@@ -432,10 +447,20 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
         }
 
         /**
-         * Метод для возведения матрицы в степень
+         * Возведение квадратной матрицы в степень.
+         * Использует алгоритм быстрого возведения в степень.
          *
-         * @param n степень, в которую нужно возвести матрицу
-         * @return матрица, возведённая в степень
+         * @param n степень, в которую нужно возвести матрицу.
+         *          Должна быть неотрицательной.
+         * @return матрица, возведённая в степень.
+         * @throws IllegalArgumentException если степень отрицательная.
+         * @throws IllegalArgumentException если матрица не является квадратной.
+         *                                  <p></p>
+         *                                  Пример:
+         *                                  <pre>{@code
+         * Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
+         * Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
+         * }</pre>
          */
         public Matrix pows(int n) {
             if (n < 0) {
@@ -492,7 +517,13 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
         }
 
 
-        // Нормализовать вектор (привести к единичной длине)
+        /**
+         * Нормализация вектора (приведение к единичной длине).
+         * Доступно только для векторов.
+         *
+         * @return нормализованный вектор.
+         * @throws ArithmeticException если вектор является нулевым (длина равна 0).
+         */
         public Matrix normalize() {
             double length = getLength();
             if (length == 0) {

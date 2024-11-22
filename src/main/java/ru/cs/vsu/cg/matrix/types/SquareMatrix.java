@@ -3,165 +3,173 @@ package ru.cs.vsu.cg.matrix.types;
 import ru.cs.vsu.cg.matrix.core.AbstractMatrix;
 
 /**
- * Квадратная матрица
+ * Класс для работы с квадратными матрицами.
+ * <p>
+ * Квадратная матрица — это матрица, у которой количество строк равно количеству столбцов.
+ * Этот класс предоставляет операции, такие как транспонирование, умножение, возведение в степень.
  */
 public class SquareMatrix extends AbstractMatrix<SquareMatrix> {
 
+    // Конструкторы
+
     /**
-     * Конструктор квадратной матрицы
+     * Конструктор квадратной матрицы с элементами из одномерного массива.
      *
-     * @param n    количество строк и столбцов
-     * @param base тело матрицы (одномерный массив)
+     * @param n    количество строк и столбцов.
+     * @param base тело матрицы (одномерный массив).
      */
     public SquareMatrix(int n, double[] base) {
         super(n, n, base);
     }
 
     /**
-     * Конструктор квадратной матрицы
+     * Конструктор квадратной матрицы с элементами из двумерного массива.
      *
-     * @param n    количество строк и столбцов
-     * @param base тело матрицы (двумерный массив)
+     * @param n    количество строк и столбцов.
+     * @param base тело матрицы (двумерный массив).
      */
     public SquareMatrix(int n, double[][] base) {
         super(n, n, base);
     }
 
     /**
-     * Конструктор нулевой матрицы
+     * Конструктор нулевой квадратной матрицы.
      *
-     * @param n количество строк и столбцов
+     * @param n количество строк и столбцов.
      */
     public SquareMatrix(int n) {
         super(n, n);
     }
 
     /**
-     * Единичная квадратная матрица
+     * Конструктор единичной квадратной матрицы.
      *
-     * @param n    количество строк и столбцов
-     * @param unit переменная flag
+     * @param n    количество строк и столбцов.
+     * @param unit если true, создается единичная матрица.
      */
     public SquareMatrix(int n, boolean unit) {
         super(n, n, unit);
     }
 
-
     /**
-     * Конструктор из общей матрицы
+     * Конструктор квадратной матрицы на основе общей матрицы.
      *
-     * @param matrix общая матрица
+     * @param matrix общая матрица.
+     * @throws IllegalArgumentException если переданная матрица не квадратная.
      */
     protected SquareMatrix(Matrix matrix) {
         super(matrix.getRows(), matrix.getCols(), matrix.getBase());
         validateSquare(matrix.getRows(), matrix.getCols());
     }
 
-    /**
-     * Метод New Matrix -> для корректной работы AbstractMatrix
-     *
-     * @param matrix основная матрица
-     * @return Квадратная матрица
-     */
-    @Override
-    protected SquareMatrix newMatrix(Matrix matrix) {
-        return new SquareMatrix(matrix);
-    }
+    // Операции с квадратной матрицей
 
     /**
-     * Транспонирование квадратной матрицы
+     * Транспонирует текущую матрицу.
      */
     public void transpose() {
         setMatrix(getMatrix().transposed());
     }
 
-
     /**
-     * Транспонировать матрицу
+     * Создает транспонированную копию текущей матрицы.
      *
-     * @return квадратная матрица
+     * @return новая транспонированная квадратная матрица.
      */
     public SquareMatrix transposed() {
         return newMatrix(getMatrix().transposed());
     }
 
+    /**
+     * Возводит текущую матрицу в степень.
+     *
+     * @param n степень.
+     */
+    public void pow(int n) {
+        setMatrix(getMatrix().pows(n));
+    }
 
     /**
-     * Возведение матрицы в степень
+     * Создает новую матрицу, возведенную в заданную степень.
      *
-     * @param n степень
-     * @return квадратная матрица
+     * @param n степень.
+     * @return новая квадратная матрица.
      */
     public SquareMatrix pows(int n) {
         return newMatrix(getMatrix().pows(n));
     }
 
     /**
-     * Возведение матрицы в степень
+     * Умножает текущую матрицу на другую квадратную матрицу.
      *
-     * @param n степень
-     */
-
-    public void pow(int n) {
-        setMatrix(getMatrix().pows(n));
-    }
-
-    /**
-     * Умножение квадратной матрицы
-     *
-     * @param matrix матрица-множитель
+     * @param matrix матрица-множитель.
      */
     public void multiply(SquareMatrix matrix) {
         setMatrix(getMatrix().multiplied(matrix.getMatrix()));
     }
 
     /**
-     * Умножение квадратной матрицы
+     * Создает новую матрицу как результат умножения текущей на другую квадратную матрицу.
      *
-     * @param matrix матрица-множитель
-     * @return квадратная матрица
+     * @param matrix матрица-множитель.
+     * @return новая квадратная матрица.
      */
     public SquareMatrix multiplied(SquareMatrix matrix) {
         return newMatrix(getMatrix().multiplied(matrix.getMatrix()));
     }
 
-
     /**
-     * Умножение квадратной матрицы на вектор-столбец
+     * Умножает текущую матрицу на вектор-столбец.
      *
-     * @param vector вектор-множитель
-     * @return вектор-столбец
+     * @param vector вектор-множитель.
+     * @return результат в виде нового вектора-столбца.
      */
     public VectorC multiplied(VectorC vector) {
-        Matrix result = getMatrix().multiplied(new Matrix(vector.getRows(), vector.getCols(), getBase()));
+        Matrix result = getMatrix().multiplied(new Matrix(vector.getRows(), vector.getCols(), vector.getBase()));
         return new VectorC(result);
     }
 
     /**
-     * Умножение на прямоугольную матрицу
+     * Умножает текущую матрицу на прямоугольную матрицу.
      *
-     * @param matrix матрица-множитель
-     * @return прямоугольная матрица
+     * @param matrix матрица-множитель.
+     * @return новая прямоугольная матрица.
      */
     public RecMatrix multiplied(RecMatrix matrix) {
-        Matrix result = getMatrix().multiplied(new Matrix(matrix.getRows(), matrix.getCols(), getBase()));
+        Matrix result = getMatrix().multiplied(new Matrix(matrix.getRows(), matrix.getCols(), matrix.getBase()));
         return new RecMatrix(result);
     }
 
+    // Проверка корректности размеров
+
     /**
-     * Проверка корректности значений
+     * Проверяет, что матрица квадратная.
      *
-     * @param row строки
-     * @param col столбцы
+     * @param row количество строк.
+     * @param col количество столбцов.
+     * @throws IllegalArgumentException если матрица не квадратная или является вектором.
      */
     private void validateSquare(int row, int col) {
-        if (row == 1 || col == 1) {
-            throw new IllegalArgumentException("Размеры квадратной матрицы должны быть больше 1x1. или вы пытаетесь ввести вектор?!");
-        }
         if (row != col) {
-            throw new IllegalArgumentException("Некорректные значения строк и столбцов");
+            throw new IllegalArgumentException("Матрица должна быть квадратной (количество строк должно совпадать с количеством столбцов).");
+        }
+        if (row == 1 || col == 1) {
+            throw new IllegalArgumentException("Квадратная матрица не может быть вектором. Проверьте размеры (должны быть больше 1x1).");
         }
     }
 
-//    public double determinant() {} //TODO на будущее - можно реализовать определитель, обратная матрица, и другое
+    // Фабричный метод
+
+    /**
+     * Создает новую квадратную матрицу на основе базовой матрицы.
+     *
+     * @param matrix базовая матрица.
+     * @return новая квадратная матрица.
+     */
+    @Override
+    protected SquareMatrix newMatrix(Matrix matrix) {
+        return new SquareMatrix(matrix);
+    }
+
+    // TODO: Добавить реализацию вычисления определителя, обратной матрицы и других полезных методов.
 }

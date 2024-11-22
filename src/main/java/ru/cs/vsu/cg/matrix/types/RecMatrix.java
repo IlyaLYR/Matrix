@@ -1,19 +1,26 @@
 /**
- * Пакет для основных типов матриц
+ * Пакет, содержащий основные типы матриц.
  */
 package ru.cs.vsu.cg.matrix.types;
 
 import ru.cs.vsu.cg.matrix.core.AbstractMatrix;
 
 /**
- * Прямоугольная матрица
+ * Класс для работы с прямоугольными матрицами.
+ * <p>
+ * Прямоугольная матрица — это матрица, у которой количество строк не равно количеству столбцов.
+ * Этот класс предоставляет базовые операции, такие как транспонирование, умножение и создание новых матриц.
  */
 public class RecMatrix extends AbstractMatrix<RecMatrix> {
+
+    // Конструкторы
+
     /**
-     * Конструктор нулевой прямоугольной матрицы
+     * Конструктор для создания нулевой прямоугольной матрицы заданных размеров.
      *
-     * @param row строки
-     * @param col столбцы
+     * @param row количество строк.
+     * @param col количество столбцов.
+     * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      */
     public RecMatrix(int row, int col) {
         super(row, col);
@@ -21,9 +28,10 @@ public class RecMatrix extends AbstractMatrix<RecMatrix> {
     }
 
     /**
-     * Конструктор из общей матрицы
+     * Конструктор для создания прямоугольной матрицы на основе общей матрицы.
      *
-     * @param matrix общая матрица
+     * @param matrix общая матрица.
+     * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      */
     protected RecMatrix(Matrix matrix) {
         super(matrix.getRows(), matrix.getCols(), matrix.getBase());
@@ -31,11 +39,12 @@ public class RecMatrix extends AbstractMatrix<RecMatrix> {
     }
 
     /**
-     * Конструктор прямоугольной матрицы
+     * Конструктор для создания прямоугольной матрицы с элементами из одномерного массива.
      *
-     * @param row  строки
-     * @param col  столбцы
-     * @param base одномерный массив
+     * @param row  количество строк.
+     * @param col  количество столбцов.
+     * @param base массив элементов (одномерный).
+     * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      */
     public RecMatrix(int row, int col, double[] base) {
         super(row, col, base);
@@ -43,82 +52,75 @@ public class RecMatrix extends AbstractMatrix<RecMatrix> {
     }
 
     /**
-     * Конструктор прямоугольной матрицы
+     * Конструктор для создания прямоугольной матрицы с элементами из двумерного массива.
      *
-     * @param row  строки
-     * @param col  столбцы
-     * @param base двумерный массив
+     * @param row  количество строк.
+     * @param col  количество столбцов.
+     * @param base массив элементов (двумерный).
+     * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      */
     public RecMatrix(int row, int col, double[][] base) {
         super(row, col, base);
         validateNonSquare(row, col);
     }
 
+    // Проверка корректности размеров
 
     /**
-     * Проверка корректности значений
+     * Проверяет, что размеры матрицы соответствуют требованиям для прямоугольной матрицы.
      *
-     * @param row строки
-     * @param col столбцы
+     * @param row количество строк.
+     * @param col количество столбцов.
+     * @throws IllegalArgumentException если матрица является вектором или квадратной.
      */
     private void validateNonSquare(int row, int col) {
         if (row == 1 || col == 1) {
-            throw new IllegalArgumentException("Размеры прямоугольной матрицы должны быть больше 1x1. или вы пытаетесь ввести вектор?!");
+            throw new IllegalArgumentException("Прямоугольная матрица не может быть вектором. Проверьте размеры (должны быть больше 1x1).");
         }
     }
 
+    // Операции с матрицами
+
     /**
-     * Транспонирование матрицы
+     * Транспонирует текущую матрицу.
      */
     public void transpose() {
         setMatrix(getMatrix().transposed());
     }
 
     /**
-     * Транспонировать матрицу
+     * Создает транспонированную копию текущей матрицы.
      *
-     * @return прямоугольная матрица
+     * @return новая транспонированная прямоугольная матрица.
      */
     public RecMatrix transposed() {
         return newMatrix(getMatrix().transposed());
     }
 
-
     /**
-     * Метод New Matrix -> для корректной работы AbstractMatrix
+     * Перемножает текущую матрицу с другой прямоугольной матрицей.
      *
-     * @param matrix основная матрица
-     * @return Прямоугольная матрица
-     */
-    @Override
-    protected RecMatrix newMatrix(Matrix matrix) {
-        return new RecMatrix(matrix);
-    }
-
-    /**
-     * Перемножение прямоугольных матриц
-     *
-     * @param matrix прямоугольная матрица
+     * @param matrix другая прямоугольная матрица.
      */
     public void multiply(RecMatrix matrix) {
         setMatrix(getMatrix().multiplied(matrix.getMatrix()));
     }
 
     /**
-     * Перемножение прямоугольных матриц
+     * Создает новую матрицу как результат умножения текущей на другую прямоугольную матрицу.
      *
-     * @param matrix прямоугольная матрица
-     * @return прямоугольная матрица
+     * @param matrix другая прямоугольная матрица.
+     * @return новая прямоугольная матрица.
      */
     public RecMatrix multiplied(RecMatrix matrix) {
         return newMatrix(getMatrix().multiplied(matrix.getMatrix()));
     }
 
     /**
-     * Перемножение прямоугольной и квадратной матрицы
+     * Умножает текущую матрицу на квадратную матрицу.
      *
-     * @param matrix матрица-множитель
-     * @return прямоугольная матрица
+     * @param matrix квадратная матрица.
+     * @return новая прямоугольная матрица.
      */
     public RecMatrix multiplied(SquareMatrix matrix) {
         Matrix result = getMatrix().multiplied(new Matrix(matrix.getRows(), matrix.getCols(), matrix.getBase()));
@@ -126,13 +128,26 @@ public class RecMatrix extends AbstractMatrix<RecMatrix> {
     }
 
     /**
-     * Перемножение прямоугольной матрицы и вектора-столбца
+     * Умножает текущую матрицу на вектор-столбец.
      *
-     * @param vector вектор-множитель
-     * @return вектор-столбец
+     * @param vector вектор-столбец.
+     * @return новый вектор-столбец.
      */
     public VectorC multiplied(VectorC vector) {
         Matrix result = getMatrix().multiplied(new Matrix(vector.getRows(), vector.getCols(), vector.getBase()));
         return new VectorC(result);
+    }
+
+    // Абстрактный метод для создания новой матрицы
+
+    /**
+     * Создает новую прямоугольную матрицу на основе базовой матрицы.
+     *
+     * @param matrix базовая матрица.
+     * @return новая прямоугольная матрица.
+     */
+    @Override
+    protected RecMatrix newMatrix(Matrix matrix) {
+        return new RecMatrix(matrix);
     }
 }

@@ -4,12 +4,15 @@ import ru.cs.vsu.cg.matrix.types.SquareMatrix;
 import ru.cs.vsu.cg.matrix.types.VectorC;
 
 /**
- * Класс обертка для квадратных матриц заданного размера
- * <p>
- *     Содержит методы применимые к квадратной матрице
- * </p>
- * @param <T> конкретный класс квадратной матрицы с заданным размером
- * @param <E> конкретный класс вектора-столбца с заданным размером
+ * Класс обертка для квадратных матриц заданного размера.
+ *<p>
+ * Этот класс предоставляет методы для выполнения различных операций над квадратными матрицами,
+ * таких как сложение, вычитание, умножение, транспонирование и возведение в степень.
+ * Абстрактный метод `newMatrix` позволяет создать новые экземпляры матрицы
+ * через наследников, обеспечивая поддержку конкретных реализаций.
+ *
+ * @param <T> конкретный класс квадратной матрицы с заданным размером.
+ * @param <E> конкретный класс вектора-столбца с заданным размером.
  */
 public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends VectorWrapperC<E>> {
     /**
@@ -19,39 +22,39 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
 
 
     /**
-     * Конструктор квадратной матрицы
+     * Конструктор квадратной матрицы из одномерного массива значений.
      *
-     * @param n    количество строк и столбцов
-     * @param base тело матрицы (одномерный массив)
+     * @param n    количество строк и столбцов.
+     * @param base одномерный массив, содержащий элементы матрицы.
      */
     public MatrixWrapper(int n, double[] base) {
         matrix = new SquareMatrix(n, base);
     }
 
     /**
-     * Конструктор квадратной матрицы
+     * Конструктор квадратной матрицы из двумерного массива значений.
      *
-     * @param n    количество строк и столбцов
-     * @param base тело матрицы (двумерный массив)
+     * @param n    количество строк и столбцов.
+     * @param base двумерный массив, содержащий элементы матрицы.
      */
     public MatrixWrapper(int n, double[][] base) {
         matrix = new SquareMatrix(n, base);
     }
 
     /**
-     * Конструктор нулевой матрицы
+     * Конструктор для создания нулевой квадратной матрицы.
      *
-     * @param n количество строк и столбцов
+     * @param n количество строк и столбцов.
      */
     public MatrixWrapper(int n) {
         matrix = new SquareMatrix(n);
     }
 
     /**
-     * Единичная квадратная матрица
+     * Конструктор для создания единичной квадратной матрицы.
      *
-     * @param n    количество строк и столбцов
-     * @param unit переменная flag
+     * @param n    количество строк и столбцов.
+     * @param unit флаг, определяющий создание единичной матрицы (true) или нулевой (false).
      */
     public MatrixWrapper(int n, boolean unit) {
         matrix = new SquareMatrix(n, unit);
@@ -149,10 +152,10 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
     }
 
     /**
-     * Сложение матриц
+     * Сложение текущей матрицы с другой матрицей.
      *
-     * @param other слагаемое
-     * @return новая матрица - результат
+     * @param other другая квадратная матрица.
+     * @return новая матрица, содержащая результат сложения.
      */
     public T added(T other) {
         return newMatrix(matrix.added(other.getMatrix()));
@@ -168,10 +171,10 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
     }
 
     /**
-     * Вычитание матриц
+     * Вычитание другой матрицы из текущей.
      *
-     * @param other вычитаемое
-     * @return новая матрица - результат
+     * @param other другая квадратная матрица.
+     * @return новая матрица, содержащая результат вычитания.
      */
     public T subtracted(T other) {
         return newMatrix(matrix.subtracted(other.getMatrix()));
@@ -187,10 +190,10 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
     }
 
     /**
-     * Умножение матрицы на число
+     * Умножение текущей матрицы на число.
      *
-     * @param number множитель
-     * @return новая матрица - результат
+     * @param number множитель.
+     * @return новая матрица, содержащая результат умножения.
      */
     public T multiplied(double number) {
         return newMatrix(matrix.multiplied(number));
@@ -233,19 +236,19 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
     }
 
     /**
-     * Транспонировать матрицу
+     * Транспонирование текущей матрицы.
      *
-     * @return квадратная матрица
+     * @return новая матрица, которая является транспонированной версией текущей.
      */
     public T transposed() {
         return newMatrix(getMatrix().transposed());
     }
 
     /**
-     * Возведение матрицы в степень
+     * Возведение матрицы в целую степень.
      *
-     * @param n степень
-     * @return квадратная матрица
+     * @param n степень, в которую будет возведена матрица.
+     * @return новая матрица, содержащая результат операции.
      */
     public T pows(int n) {
         return newMatrix(getMatrix().pows(n));
@@ -271,10 +274,10 @@ public abstract class MatrixWrapper<T extends MatrixWrapper<T, E>, E extends Vec
     }
 
     /**
-     * Умножение квадратной матрицы
+     * Умножение текущей матрицы на другую матрицу.
      *
-     * @param matrix матрица-множитель
-     * @return квадратная матрица
+     * @param matrix матрица-множитель.
+     * @return новая матрица, содержащая результат умножения.
      */
     public T multiplied(T matrix) {
         return newMatrix(getMatrix().multiplied(matrix.getMatrix()));

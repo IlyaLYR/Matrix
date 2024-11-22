@@ -3,54 +3,52 @@ package ru.cs.vsu.cg.matrix.types;
 import ru.cs.vsu.cg.matrix.core.AbstractMatrix;
 
 /**
- * Вектор-строка
+ * Класс для работы с векторами-строками.
+ * <p>
+ * Вектор-строка — это матрица размером 1×N. Этот класс предоставляет методы нормализации,
+ * вычисления длины, скалярного произведения и операций с матрицами.
  */
 public class VectorR extends AbstractMatrix<VectorR> {
+
+    // Конструкторы
+
     /**
-     * Конструктор нулевого вектора
+     * Создает нулевой вектор-строку заданной длины.
      *
-     * @param n количество элементов
+     * @param n количество элементов (длина вектора).
      */
     public VectorR(int n) {
         super(1, n);
     }
 
     /**
-     * Конструктор вектор-строки
+     * Создает вектор-строку с элементами из одномерного массива.
      *
-     * @param n    количество элементов
-     * @param base элементы вектора
+     * @param n    количество элементов (длина вектора).
+     * @param base массив элементов вектора.
      */
     public VectorR(int n, double[] base) {
         super(1, n, base);
     }
 
     /**
-     * Вспомогательный метод для AbstractMatrix
+     * Создает вектор-строку на основе общей матрицы.
      *
-     * @param matrix основная матрица
-     * @return вектор-строка
-     */
-    @Override
-    protected VectorR newMatrix(Matrix matrix) {
-        return new VectorR(matrix);
-    }
-
-    /**
-     * Конструктор из общей матрицы
-     *
-     * @param matrix общая матрица
+     * @param matrix базовая матрица.
+     * @throws IllegalArgumentException если базовая матрица не является вектором-строкой.
      */
     protected VectorR(Matrix matrix) {
         super(matrix.getRows(), matrix.getCols(), matrix.getBase());
-        validateSquare(matrix.getRows(), matrix.getCols());
+        validateRowVector(matrix.getRows(), matrix.getCols());
     }
 
+    // Методы операций
+
     /**
-     * Перемножение вектор-строки и квадратной матрица
+     * Умножение текущего вектора-строки на квадратную матрицу.
      *
-     * @param matrix квадратная матрица
-     * @return вектор-строка
+     * @param matrix квадратная матрица.
+     * @return результат умножения в виде нового вектора-строки.
      */
     public VectorR multiplied(SquareMatrix matrix) {
         Matrix result = getMatrix().multiplied(new Matrix(matrix.getRows(), matrix.getCols(), matrix.getBase()));
@@ -58,10 +56,10 @@ public class VectorR extends AbstractMatrix<VectorR> {
     }
 
     /**
-     * Перемножение вектор-строки и прямоугольной матрица
+     * Умножение текущего вектора-строки на прямоугольную матрицу.
      *
-     * @param matrix прямоугольная матрица
-     * @return вектор-строка
+     * @param matrix прямоугольная матрица.
+     * @return результат умножения в виде нового вектора-строки.
      */
     public VectorR multiplied(RecMatrix matrix) {
         Matrix result = getMatrix().multiplied(new Matrix(matrix.getRows(), matrix.getCols(), matrix.getBase()));
@@ -69,10 +67,10 @@ public class VectorR extends AbstractMatrix<VectorR> {
     }
 
     /**
-     * Перемножение вектор-строки и вектор-столбца
+     * Скалярное произведение текущего вектора-строки и вектора-столбца.
      *
-     * @param vector вектор-столбец
-     * @return скаляр
+     * @param vector вектор-столбец.
+     * @return результат умножения (скаляр).
      */
     public double multiplied(VectorC vector) {
         Matrix result = getMatrix().multiplied(new Matrix(vector.getRows(), vector.getCols(), vector.getBase()));
@@ -80,23 +78,46 @@ public class VectorR extends AbstractMatrix<VectorR> {
     }
 
     /**
-     * Проверка корректности значений
+     * Нормализация вектора-строки (приведение длины к единице).
      *
-     * @param row строки
-     * @param col столбцы
+     * @return нормализованный вектор-строка.
      */
-    private void validateSquare(int row, int col) {
-        if (col != 1) {
-            throw new IllegalArgumentException("Некорректное значение для количества столбцов");
-        }
-    }
-
-    public double getLength() {
-        return getMatrix().getLength();
-    }
-
     public VectorR normalize() {
         return new VectorR(getMatrix().normalize());
     }
 
+    /**
+     * Вычисление длины (нормы) вектора-строки.
+     *
+     * @return длина вектора.
+     */
+    public double getLength() {
+        return getMatrix().getLength();
+    }
+
+    // Вспомогательные методы
+
+    /**
+     * Проверяет, что матрица является вектором-строкой.
+     *
+     * @param row количество строк.
+     * @param col количество столбцов.
+     * @throws IllegalArgumentException если количество строк не равно 1.
+     */
+    private void validateRowVector(int row, int col) {
+        if (row != 1) {
+            throw new IllegalArgumentException("Матрица должна быть вектором-строкой (1 строка).");
+        }
+    }
+
+    /**
+     * Создает новый вектор-строку на основе базовой матрицы.
+     *
+     * @param matrix базовая матрица.
+     * @return новый вектор-строка.
+     */
+    @Override
+    protected VectorR newMatrix(Matrix matrix) {
+        return new VectorR(matrix);
+    }
 }
