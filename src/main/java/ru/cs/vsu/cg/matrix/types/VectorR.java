@@ -39,7 +39,7 @@ public class VectorR extends AbstractMatrix<VectorR> {
      */
     protected VectorR(Matrix matrix) {
         super(matrix.getRows(), matrix.getCols(), matrix.getBase());
-        validateRowVector(matrix.getRows(), matrix.getCols());
+        validateRowVector(matrix.getCols());
     }
 
     // Методы операций
@@ -101,10 +101,9 @@ public class VectorR extends AbstractMatrix<VectorR> {
      * Проверяет, что матрица является вектором-строкой.
      *
      * @param row количество строк.
-     * @param col количество столбцов.
      * @throws IllegalArgumentException если количество строк не равно 1.
      */
-    private void validateRowVector(int row, int col) {
+    private void validateRowVector(int row) {
         if (row != 1) {
             throw new IllegalArgumentException("Матрица должна быть вектором-строкой (1 строка).");
         }

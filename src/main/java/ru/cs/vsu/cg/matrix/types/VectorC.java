@@ -39,7 +39,7 @@ public class VectorC extends AbstractMatrix<VectorC> {
      */
     protected VectorC(Matrix matrix) {
         super(matrix.getRows(), matrix.getCols(), matrix.getBase());
-        validateColumnVector(matrix.getRows(), matrix.getCols());
+        validateColumnVector(matrix.getCols());
     }
 
     // Методы операций
@@ -89,11 +89,10 @@ public class VectorC extends AbstractMatrix<VectorC> {
     /**
      * Проверяет, что матрица является вектором-столбцом.
      *
-     * @param row количество строк.
      * @param col количество столбцов.
      * @throws IllegalArgumentException если количество столбцов не равно 1.
      */
-    private void validateColumnVector(int row, int col) {
+    private void validateColumnVector(int col) {
         if (col != 1) {
             throw new IllegalArgumentException("Матрица должна быть вектором-столбцом (1 столбец).");
         }

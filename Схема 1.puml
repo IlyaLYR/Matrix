@@ -1,5 +1,5 @@
 @startuml
-class ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D {
+class Matrix2D {
 + <<Create>> Matrix2D(double[][])
 + <<Create>> Matrix2D(double[])
 + <<Create>> Matrix2D()
@@ -7,7 +7,7 @@ class ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D {
 # Matrix2D newMatrix(SquareMatrix)
 }
 
-abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperR {
+abstract class VectorWrapperR {
 - VectorR vector
 + <<Create>> VectorWrapperR(int)
 + <<Create>> VectorWrapperR(int,double[])
@@ -34,7 +34,7 @@ abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperR {
 }
 
 
-class ru.cs.vsu.cg.matrix.types.SquareMatrix {
+class SquareMatrix {
 + <<Create>> SquareMatrix(int,double[])
 + <<Create>> SquareMatrix(int,double[][])
 + <<Create>> SquareMatrix(int)
@@ -52,7 +52,7 @@ class ru.cs.vsu.cg.matrix.types.SquareMatrix {
 # SquareMatrix newMatrix(Matrix)
 }
 
-class ru.cs.vsu.cg.matrix.types.RecMatrix {
+class RecMatrix {
 + <<Create>> RecMatrix(int,int)
 # <<Create>> RecMatrix(Matrix)
 + <<Create>> RecMatrix(int,int,double[])
@@ -67,7 +67,7 @@ class ru.cs.vsu.cg.matrix.types.RecMatrix {
 # RecMatrix newMatrix(Matrix)
 }
 
-abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperC {
+abstract class VectorWrapperC {
 - VectorC vector
 + <<Create>> VectorWrapperC(int)
 + <<Create>> VectorWrapperC(int,double[])
@@ -95,7 +95,7 @@ abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperC {
 }
 
 
-abstract class ru.cs.vsu.cg.matrix.core.MatrixWrapper {
+abstract class MatrixWrapper {
 ~ SquareMatrix matrix
 + <<Create>> MatrixWrapper(int,double[])
 + <<Create>> MatrixWrapper(int,double[][])
@@ -129,7 +129,7 @@ abstract class ru.cs.vsu.cg.matrix.core.MatrixWrapper {
 }
 
 
-class ru.cs.vsu.cg.matrix.types.VectorC {
+class VectorC {
 + <<Create>> VectorC(int)
 + <<Create>> VectorC(int,double[])
 # <<Create>> VectorC(Matrix)
@@ -137,27 +137,27 @@ class ru.cs.vsu.cg.matrix.types.VectorC {
 + VectorC normalize()
 + double getLength()
 + VectorC crossProduct(VectorC)
-- void validateColumnVector(int,int)
+- void validateColumnVector(int)
 # VectorC newMatrix(Matrix)
 }
 
-class ru.cs.vsu.cg.matrix.typesVectors.Vector2C {
+class Vector2C {
 + <<Create>> Vector2C()
 + <<Create>> Vector2C(double[])
 + Vector2C newMatrix(VectorC)
 }
 
-class ru.cs.vsu.cg.matrix.typesVectors.Vector3C {
+class Vector3C {
 + <<Create>> Vector3C()
 + <<Create>> Vector3C(double[])
 + Vector3C newMatrix(VectorC)
 }
 
-class ru.cs.vsu.cg.matrix.Main {
+class Main {
 + {static} void main(String[])
 }
 
-abstract class ru.cs.vsu.cg.matrix.core.AbstractMatrix {
+abstract class AbstractMatrix {
 # Matrix matrix
 + <<Create>> AbstractMatrix(int,int)
 + <<Create>> AbstractMatrix(int,int,double[])
@@ -181,10 +181,12 @@ abstract class ru.cs.vsu.cg.matrix.core.AbstractMatrix {
 + void divide(double)
 + T divided(double)
 + String toString()
++ boolean equals(Object)
++ int hashCode()
 }
 
 
-class ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix {
+class AbstractMatrix$Matrix {
 - int rows
 - int cols
 - double[] base
@@ -221,13 +223,13 @@ class ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix {
 }
 
 
-class ru.cs.vsu.cg.matrix.core.MatrixUtils {
+class MatrixUtils {
 + {static} double dotProduct(T,T,double)
 + {static} T add(T)
 + {static} T multiplied(T)
 }
 
-class ru.cs.vsu.cg.matrix.types.VectorR {
+class VectorR {
 + <<Create>> VectorR(int)
 + <<Create>> VectorR(int,double[])
 # <<Create>> VectorR(Matrix)
@@ -236,11 +238,11 @@ class ru.cs.vsu.cg.matrix.types.VectorR {
 + double multiplied(VectorC)
 + VectorR normalize()
 + double getLength()
-- void validateRowVector(int,int)
+- void validateRowVector(int)
 # VectorR newMatrix(Matrix)
 }
 
-class ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D {
+class Matrix4D {
 + <<Create>> Matrix4D(double[][])
 + <<Create>> Matrix4D(double[])
 + <<Create>> Matrix4D()
@@ -248,13 +250,13 @@ class ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D {
 # Matrix4D newMatrix(SquareMatrix)
 }
 
-class ru.cs.vsu.cg.matrix.typesVectors.Vector4C {
+class Vector4C {
 + <<Create>> Vector4C()
 + <<Create>> Vector4C(double[])
 + Vector4C newMatrix(VectorC)
 }
 
-class ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D {
+class Matrix3D {
 + <<Create>> Matrix3D(double[][])
 + <<Create>> Matrix3D(double[])
 + <<Create>> Matrix3D()
@@ -264,15 +266,15 @@ class ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D {
 
 
 
-ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D
-ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.SquareMatrix
-ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.RecMatrix
-ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.VectorC
-ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector2C
-ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector3C
-ru.cs.vsu.cg.matrix.core.AbstractMatrix +.. ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix
-ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.VectorR
-ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D
-ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector4C
-ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D
+MatrixWrapper <|-- Matrix2D
+AbstractMatrix <|-- SquareMatrix
+AbstractMatrix <|-- RecMatrix
+AbstractMatrix <|-- VectorC
+VectorWrapperC <|-- Vector2C
+VectorWrapperC <|-- Vector3C
+AbstractMatrix +.. AbstractMatrix$Matrix
+AbstractMatrix <|-- VectorR
+MatrixWrapper <|-- Matrix4D
+VectorWrapperC <|-- Vector4C
+MatrixWrapper <|-- Matrix3D
 @enduml

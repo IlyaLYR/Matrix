@@ -1,12 +1,12 @@
 @startuml
-class Matrix2D {
+class ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D {
 + <<Create>> Matrix2D(double[][])
 + <<Create>> Matrix2D(double[])
 + <<Create>> Matrix2D()
 + <<Create>> Matrix2D(boolean)
 # Matrix2D newMatrix(SquareMatrix)
 }
-note top of Matrix2D
+note top of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D
 
  * Класс для работы с матрицами размером 2x2.
  * <p>
@@ -15,33 +15,33 @@ note top of Matrix2D
  
 end note
 
-note left of Matrix2D::Matrix2D(double[][])
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D::Matrix2D(double[][])
 
      * Конструктор для создания матрицы 2x2 из двумерного массива.
      *
      * @param base двумерный массив, представляющий значения матрицы 2x2.
      
 end note
-note right of Matrix2D::Matrix2D(double[])
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D::Matrix2D(double[])
 
      * Конструктор для создания матрицы 2x2 из одномерного массива.
      *
      * @param base одномерный массив, представляющий значения матрицы 2x2.
      
 end note
-note left of Matrix2D::Matrix2D()
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D::Matrix2D()
 
      * Конструктор для создания нулевой матрицы 2x2.
      
 end note
-note right of Matrix2D::Matrix2D(boolean)
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D::Matrix2D(boolean)
 
      * Конструктор для создания единичной матрицы 2x2.
      *
      * @param unit если true, создаётся единичная матрица, если false — нулевая.
      
 end note
-note left of Matrix2D::newMatrix(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D::newMatrix(SquareMatrix)
 
      * Метод для создания нового объекта Matrix2D на основе SquareMatrix.
      *
@@ -50,7 +50,7 @@ note left of Matrix2D::newMatrix(SquareMatrix)
      
 end note
 
-abstract class VectorWrapperR {
+abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperR {
 - VectorR vector
 + <<Create>> VectorWrapperR(int)
 + <<Create>> VectorWrapperR(int,double[])
@@ -75,7 +75,7 @@ abstract class VectorWrapperR {
 + void print()
 + String toString()
 }
-note top of VectorWrapperR
+note top of ru.cs.vsu.cg.matrix.core.VectorWrapperR
 
  * Абстрактный класс-обертка для вектора-строки фиксированного размера.
  * <p>
@@ -87,20 +87,20 @@ note top of VectorWrapperR
  
 end note
 
-note left of VectorWrapperR::vector
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::vector
 
      * Вектор-строка.
      
 end note
 
-note left of VectorWrapperR::VectorWrapperR(int)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::VectorWrapperR(int)
 
      * Конструктор для создания нулевого вектора-строки заданной размерности.
      *
      * @param n количество элементов вектора.
      
 end note
-note right of VectorWrapperR::VectorWrapperR(int,double[])
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::VectorWrapperR(int,double[])
 
      * Конструктор для создания вектора-строки с заданными элементами.
      *
@@ -108,42 +108,42 @@ note right of VectorWrapperR::VectorWrapperR(int,double[])
      * @param base массив элементов вектора.
      
 end note
-note left of VectorWrapperR::getBase()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::getBase()
 
      * Получить массив элементов вектора.
      *
      * @return массив элементов.
      
 end note
-note right of VectorWrapperR::getRows()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::getRows()
 
      * Получить количество строк в векторе.
      *
      * @return количество строк (всегда 1 для вектора-строки).
      
 end note
-note left of VectorWrapperR::getCols()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::getCols()
 
      * Получить количество столбцов в векторе.
      *
      * @return количество столбцов.
      
 end note
-note right of VectorWrapperR::getVector()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::getVector()
 
      * Получить внутренний объект вектора-строки.
      *
      * @return внутренний объект `VectorR`.
      
 end note
-note left of VectorWrapperR::setVector(VectorR)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::setVector(VectorR)
 
      * Установить внутренний объект вектора-строки.
      *
      * @param vector объект `VectorR`.
      
 end note
-note right of VectorWrapperR::get(int,int)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::get(int,int)
 
      * Получить элемент вектора по индексу.
      *
@@ -152,7 +152,7 @@ note right of VectorWrapperR::get(int,int)
      * @return значение элемента.
      
 end note
-note left of VectorWrapperR::set(int,int,double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::set(int,int,double)
 
      * Установить элемент вектора по индексу.
      *
@@ -161,7 +161,7 @@ note left of VectorWrapperR::set(int,int,double)
      * @param value новое значение.
      
 end note
-note right of VectorWrapperR::newMatrix(VectorR)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::newMatrix(VectorR)
 
      * Создать новый экземпляр конкретного вектора-строки.
      *
@@ -169,14 +169,14 @@ note right of VectorWrapperR::newMatrix(VectorR)
      * @return новый экземпляр конкретного типа вектора.
      
 end note
-note left of VectorWrapperR::add(T)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::add(T)
 
      * Сложить текущий вектор с другим.
      *
      * @param other вектор-строка для сложения.
      
 end note
-note right of VectorWrapperR::added(T)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::added(T)
 
      * Создать новый вектор как сумму текущего и другого.
      *
@@ -184,14 +184,14 @@ note right of VectorWrapperR::added(T)
      * @return новый вектор-строка.
      
 end note
-note left of VectorWrapperR::subtract(T)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::subtract(T)
 
      * Вычесть другой вектор из текущего.
      *
      * @param other вектор-строка для вычитания.
      
 end note
-note right of VectorWrapperR::subtracted(T)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::subtracted(T)
 
      * Создать новый вектор как разность текущего и другого.
      *
@@ -199,14 +199,14 @@ note right of VectorWrapperR::subtracted(T)
      * @return новый вектор-строка.
      
 end note
-note left of VectorWrapperR::multiply(double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::multiply(double)
 
      * Умножить текущий вектор на число.
      *
      * @param number множитель.
      
 end note
-note right of VectorWrapperR::multiplied(double)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::multiplied(double)
 
      * Создать новый вектор как результат умножения текущего на число.
      *
@@ -214,14 +214,14 @@ note right of VectorWrapperR::multiplied(double)
      * @return новый вектор-строка.
      
 end note
-note left of VectorWrapperR::divide(double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::divide(double)
 
      * Разделить текущий вектор на число.
      *
      * @param number делитель.
      
 end note
-note right of VectorWrapperR::divided(double)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::divided(double)
 
      * Создать новый вектор как результат деления текущего на число.
      *
@@ -229,26 +229,26 @@ note right of VectorWrapperR::divided(double)
      * @return новый вектор-строка.
      
 end note
-note left of VectorWrapperR::getLength()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::getLength()
 
      * Вычислить длину вектора.
      *
      * @return длина вектора.
      
 end note
-note right of VectorWrapperR::normalize()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::normalize()
 
      * Нормализовать текущий вектор.
      *
      * @return новый нормализованный вектор-строка.
      
 end note
-note left of VectorWrapperR::print()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperR::print()
 
      * Печать текущего вектора в консоль.
      
 end note
-note right of VectorWrapperR::toString()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperR::toString()
 
      * Представление текущего вектора в виде строки.
      *
@@ -256,7 +256,7 @@ note right of VectorWrapperR::toString()
      
 end note
 
-class SquareMatrix {
+class ru.cs.vsu.cg.matrix.types.SquareMatrix {
 + <<Create>> SquareMatrix(int,double[])
 + <<Create>> SquareMatrix(int,double[][])
 + <<Create>> SquareMatrix(int)
@@ -273,7 +273,7 @@ class SquareMatrix {
 - void validateSquare(int,int)
 # SquareMatrix newMatrix(Matrix)
 }
-note top of SquareMatrix
+note top of ru.cs.vsu.cg.matrix.types.SquareMatrix
 
  * Класс для работы с квадратными матрицами.
  * <p>
@@ -282,7 +282,7 @@ note top of SquareMatrix
  
 end note
 
-note left of SquareMatrix::SquareMatrix(int,double[])
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::SquareMatrix(int,double[])
 
      * Конструктор квадратной матрицы с элементами из одномерного массива.
      *
@@ -290,7 +290,7 @@ note left of SquareMatrix::SquareMatrix(int,double[])
      * @param base тело матрицы (одномерный массив).
      
 end note
-note right of SquareMatrix::SquareMatrix(int,double[][])
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::SquareMatrix(int,double[][])
 
      * Конструктор квадратной матрицы с элементами из двумерного массива.
      *
@@ -298,14 +298,14 @@ note right of SquareMatrix::SquareMatrix(int,double[][])
      * @param base тело матрицы (двумерный массив).
      
 end note
-note left of SquareMatrix::SquareMatrix(int)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::SquareMatrix(int)
 
      * Конструктор нулевой квадратной матрицы.
      *
      * @param n количество строк и столбцов.
      
 end note
-note right of SquareMatrix::SquareMatrix(int,boolean)
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::SquareMatrix(int,boolean)
 
      * Конструктор единичной квадратной матрицы.
      *
@@ -313,7 +313,7 @@ note right of SquareMatrix::SquareMatrix(int,boolean)
      * @param unit если true, создается единичная матрица.
      
 end note
-note left of SquareMatrix::SquareMatrix(Matrix)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::SquareMatrix(Matrix)
 
      * Конструктор квадратной матрицы на основе общей матрицы.
      *
@@ -321,26 +321,26 @@ note left of SquareMatrix::SquareMatrix(Matrix)
      * @throws IllegalArgumentException если переданная матрица не квадратная.
      
 end note
-note right of SquareMatrix::transpose()
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::transpose()
 
      * Транспонирует текущую матрицу.
      
 end note
-note left of SquareMatrix::transposed()
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::transposed()
 
      * Создает транспонированную копию текущей матрицы.
      *
      * @return новая транспонированная квадратная матрица.
      
 end note
-note right of SquareMatrix::pow(int)
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::pow(int)
 
      * Возводит текущую матрицу в степень.
      *
      * @param n степень.
      
 end note
-note left of SquareMatrix::pows(int)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::pows(int)
 
      * Создает новую матрицу, возведенную в заданную степень.
      *
@@ -348,14 +348,14 @@ note left of SquareMatrix::pows(int)
      * @return новая квадратная матрица.
      
 end note
-note right of SquareMatrix::multiply(SquareMatrix)
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::multiply(SquareMatrix)
 
      * Умножает текущую матрицу на другую квадратную матрицу.
      *
      * @param matrix матрица-множитель.
      
 end note
-note left of SquareMatrix::multiplied(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::multiplied(SquareMatrix)
 
      * Создает новую матрицу как результат умножения текущей на другую квадратную матрицу.
      *
@@ -363,7 +363,7 @@ note left of SquareMatrix::multiplied(SquareMatrix)
      * @return новая квадратная матрица.
      
 end note
-note right of SquareMatrix::multiplied(VectorC)
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::multiplied(VectorC)
 
      * Умножает текущую матрицу на вектор-столбец.
      *
@@ -371,7 +371,7 @@ note right of SquareMatrix::multiplied(VectorC)
      * @return результат в виде нового вектора-столбца.
      
 end note
-note left of SquareMatrix::multiplied(RecMatrix)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::multiplied(RecMatrix)
 
      * Умножает текущую матрицу на прямоугольную матрицу.
      *
@@ -379,7 +379,7 @@ note left of SquareMatrix::multiplied(RecMatrix)
      * @return новая прямоугольная матрица.
      
 end note
-note right of SquareMatrix::validateSquare(int,int)
+note right of ru.cs.vsu.cg.matrix.types.SquareMatrix::validateSquare(int,int)
 
      * Проверяет, что матрица квадратная.
      *
@@ -388,7 +388,7 @@ note right of SquareMatrix::validateSquare(int,int)
      * @throws IllegalArgumentException если матрица не квадратная или является вектором.
      
 end note
-note left of SquareMatrix::newMatrix(Matrix)
+note left of ru.cs.vsu.cg.matrix.types.SquareMatrix::newMatrix(Matrix)
 
      * Создает новую квадратную матрицу на основе базовой матрицы.
      *
@@ -397,7 +397,7 @@ note left of SquareMatrix::newMatrix(Matrix)
      
 end note
 
-class RecMatrix {
+class ru.cs.vsu.cg.matrix.types.RecMatrix {
 + <<Create>> RecMatrix(int,int)
 # <<Create>> RecMatrix(Matrix)
 + <<Create>> RecMatrix(int,int,double[])
@@ -411,7 +411,7 @@ class RecMatrix {
 + VectorC multiplied(VectorC)
 # RecMatrix newMatrix(Matrix)
 }
-note top of RecMatrix
+note top of ru.cs.vsu.cg.matrix.types.RecMatrix
 
  * Класс для работы с прямоугольными матрицами.
  * <p>
@@ -420,7 +420,7 @@ note top of RecMatrix
  
 end note
 
-note left of RecMatrix::RecMatrix(int,int)
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::RecMatrix(int,int)
 
      * Конструктор для создания нулевой прямоугольной матрицы заданных размеров.
      *
@@ -429,7 +429,7 @@ note left of RecMatrix::RecMatrix(int,int)
      * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      
 end note
-note right of RecMatrix::RecMatrix(Matrix)
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::RecMatrix(Matrix)
 
      * Конструктор для создания прямоугольной матрицы на основе общей матрицы.
      *
@@ -437,7 +437,7 @@ note right of RecMatrix::RecMatrix(Matrix)
      * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      
 end note
-note left of RecMatrix::RecMatrix(int,int,double[])
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::RecMatrix(int,int,double[])
 
      * Конструктор для создания прямоугольной матрицы с элементами из одномерного массива.
      *
@@ -447,7 +447,7 @@ note left of RecMatrix::RecMatrix(int,int,double[])
      * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      
 end note
-note right of RecMatrix::RecMatrix(int,int,double[][])
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::RecMatrix(int,int,double[][])
 
      * Конструктор для создания прямоугольной матрицы с элементами из двумерного массива.
      *
@@ -457,7 +457,7 @@ note right of RecMatrix::RecMatrix(int,int,double[][])
      * @throws IllegalArgumentException если размеры матрицы не соответствуют требованиям.
      
 end note
-note left of RecMatrix::validateNonSquare(int,int)
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::validateNonSquare(int,int)
 
      * Проверяет, что размеры матрицы соответствуют требованиям для прямоугольной матрицы.
      *
@@ -466,26 +466,26 @@ note left of RecMatrix::validateNonSquare(int,int)
      * @throws IllegalArgumentException если матрица является вектором или квадратной.
      
 end note
-note right of RecMatrix::transpose()
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::transpose()
 
      * Транспонирует текущую матрицу.
      
 end note
-note left of RecMatrix::transposed()
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::transposed()
 
      * Создает транспонированную копию текущей матрицы.
      *
      * @return новая транспонированная прямоугольная матрица.
      
 end note
-note right of RecMatrix::multiply(RecMatrix)
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::multiply(RecMatrix)
 
      * Перемножает текущую матрицу с другой прямоугольной матрицей.
      *
      * @param matrix другая прямоугольная матрица.
      
 end note
-note left of RecMatrix::multiplied(RecMatrix)
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::multiplied(RecMatrix)
 
      * Создает новую матрицу как результат умножения текущей на другую прямоугольную матрицу.
      *
@@ -493,7 +493,7 @@ note left of RecMatrix::multiplied(RecMatrix)
      * @return новая прямоугольная матрица.
      
 end note
-note right of RecMatrix::multiplied(SquareMatrix)
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::multiplied(SquareMatrix)
 
      * Умножает текущую матрицу на квадратную матрицу.
      *
@@ -501,7 +501,7 @@ note right of RecMatrix::multiplied(SquareMatrix)
      * @return новая прямоугольная матрица.
      
 end note
-note left of RecMatrix::multiplied(VectorC)
+note left of ru.cs.vsu.cg.matrix.types.RecMatrix::multiplied(VectorC)
 
      * Умножает текущую матрицу на вектор-столбец.
      *
@@ -509,7 +509,7 @@ note left of RecMatrix::multiplied(VectorC)
      * @return новый вектор-столбец.
      
 end note
-note right of RecMatrix::newMatrix(Matrix)
+note right of ru.cs.vsu.cg.matrix.types.RecMatrix::newMatrix(Matrix)
 
      * Создает новую прямоугольную матрицу на основе базовой матрицы.
      *
@@ -518,7 +518,7 @@ note right of RecMatrix::newMatrix(Matrix)
      
 end note
 
-abstract class VectorWrapperC {
+abstract class ru.cs.vsu.cg.matrix.core.VectorWrapperC {
 - VectorC vector
 + <<Create>> VectorWrapperC(int)
 + <<Create>> VectorWrapperC(int,double[])
@@ -544,11 +544,11 @@ abstract class VectorWrapperC {
 + void print()
 + String toString()
 }
-note top of VectorWrapperC
+note top of ru.cs.vsu.cg.matrix.core.VectorWrapperC
 
  * Абстрактный класс-обертка для вектора-столбца фиксированного размера.
  * <p>
- * Этот класс предоставляет методы для выполнения основных операций над векторами-столбцами, таких как сложение, вычитание,
+ * Этот класс предоставляет методы для выполнения основных операций над векторами-столбцами, таких, как сложение, вычитание,
  * умножение на число, нормализация и вычисление длины. Абстрактный метод `newMatrix` позволяет наследникам создавать
  * новые экземпляры конкретного типа вектора-столбца.
  *
@@ -556,20 +556,20 @@ note top of VectorWrapperC
  
 end note
 
-note left of VectorWrapperC::vector
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::vector
 
      * Вектор-столбец.
      
 end note
 
-note left of VectorWrapperC::VectorWrapperC(int)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::VectorWrapperC(int)
 
      * Конструктор для создания нулевого вектора-столбца заданной размерности.
      *
      * @param n количество элементов вектора.
      
 end note
-note right of VectorWrapperC::VectorWrapperC(int,double[])
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::VectorWrapperC(int,double[])
 
      * Конструктор для создания вектора-столбца с заданными элементами.
      *
@@ -577,42 +577,42 @@ note right of VectorWrapperC::VectorWrapperC(int,double[])
      * @param base массив элементов вектора.
      
 end note
-note left of VectorWrapperC::getBase()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::getBase()
 
      * Получить массив элементов вектора.
      *
      * @return массив элементов.
      
 end note
-note right of VectorWrapperC::getRows()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::getRows()
 
      * Получить количество строк в векторе.
      *
      * @return количество строк.
      
 end note
-note left of VectorWrapperC::getCols()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::getCols()
 
      * Получить количество столбцов в векторе.
      *
      * @return количество столбцов (всегда 1 для вектора-столбца).
      
 end note
-note right of VectorWrapperC::getVector()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::getVector()
 
      * Получить внутренний объект вектора-столбца.
      *
      * @return внутренний объект `VectorC`.
      
 end note
-note left of VectorWrapperC::setVector(VectorC)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::setVector(VectorC)
 
      * Задать внутренний объект вектора-столбца.
      *
      * @param vector объект `VectorC`.
      
 end note
-note right of VectorWrapperC::get(int,int)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::get(int,int)
 
      * Получить элемент вектора по индексу.
      *
@@ -621,7 +621,7 @@ note right of VectorWrapperC::get(int,int)
      * @return значение элемента.
      
 end note
-note left of VectorWrapperC::set(int,int,double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::set(int,int,double)
 
      * Установить элемент вектора по индексу.
      *
@@ -630,7 +630,7 @@ note left of VectorWrapperC::set(int,int,double)
      * @param value новое значение.
      
 end note
-note right of VectorWrapperC::newMatrix(VectorC)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::newMatrix(VectorC)
 
      * Создать новый экземпляр конкретного вектора-столбца.
      *
@@ -638,14 +638,14 @@ note right of VectorWrapperC::newMatrix(VectorC)
      * @return новый экземпляр конкретного типа вектора.
      
 end note
-note left of VectorWrapperC::add(T)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::add(T)
 
      * Сложить текущий вектор с другим.
      *
      * @param other вектор-столбец для сложения.
      
 end note
-note right of VectorWrapperC::added(T)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::added(T)
 
      * Создать новый вектор как сумму текущего и другого.
      *
@@ -653,14 +653,14 @@ note right of VectorWrapperC::added(T)
      * @return новый вектор-столбец.
      
 end note
-note left of VectorWrapperC::subtract(T)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::subtract(T)
 
      * Вычесть другой вектор из текущего.
      *
      * @param other вектор-столбец для вычитания.
      
 end note
-note right of VectorWrapperC::subtracted(T)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::subtracted(T)
 
      * Создать новый вектор как разность текущего и другого.
      *
@@ -668,14 +668,14 @@ note right of VectorWrapperC::subtracted(T)
      * @return новый вектор-столбец.
      
 end note
-note left of VectorWrapperC::multiply(double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::multiply(double)
 
      * Умножить текущий вектор на число.
      *
      * @param number множитель.
      
 end note
-note right of VectorWrapperC::multiplied(double)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::multiplied(double)
 
      * Создать новый вектор как результат умножения текущего на число.
      *
@@ -683,14 +683,14 @@ note right of VectorWrapperC::multiplied(double)
      * @return новый вектор-столбец.
      
 end note
-note left of VectorWrapperC::divide(double)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::divide(double)
 
      * Разделить текущий вектор на число.
      *
      * @param number делитель.
      
 end note
-note right of VectorWrapperC::divided(double)
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::divided(double)
 
      * Создать новый вектор как результат деления текущего на число.
      *
@@ -698,21 +698,21 @@ note right of VectorWrapperC::divided(double)
      * @return новый вектор-столбец.
      
 end note
-note left of VectorWrapperC::getLength()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::getLength()
 
      * Вычислить длину вектора.
      *
      * @return длина вектора.
      
 end note
-note right of VectorWrapperC::normalize()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::normalize()
 
      * Нормализовать текущий вектор.
      *
      * @return новый нормализованный вектор-столбец.
      
 end note
-note left of VectorWrapperC::crossProduct(T)
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::crossProduct(T)
 
      * Вычислить векторное произведение текущего вектора с другим.
      *
@@ -720,12 +720,12 @@ note left of VectorWrapperC::crossProduct(T)
      * @return новый вектор-столбец, являющийся результатом операции.
      
 end note
-note right of VectorWrapperC::print()
+note right of ru.cs.vsu.cg.matrix.core.VectorWrapperC::print()
 
      * Печать текущего вектора в консоль.
      
 end note
-note left of VectorWrapperC::toString()
+note left of ru.cs.vsu.cg.matrix.core.VectorWrapperC::toString()
 
      * Представление текущего вектора в виде строки.
      *
@@ -733,7 +733,7 @@ note left of VectorWrapperC::toString()
      
 end note
 
-abstract class MatrixWrapper {
+abstract class ru.cs.vsu.cg.matrix.core.MatrixWrapper {
 ~ SquareMatrix matrix
 + <<Create>> MatrixWrapper(int,double[])
 + <<Create>> MatrixWrapper(int,double[][])
@@ -765,7 +765,7 @@ abstract class MatrixWrapper {
 + T multiplied(T)
 + E multiplied(E)
 }
-note top of MatrixWrapper
+note top of ru.cs.vsu.cg.matrix.core.MatrixWrapper
 
  * Класс обертка для квадратных матриц заданного размера.
  *<p>
@@ -779,13 +779,13 @@ note top of MatrixWrapper
  
 end note
 
-note left of MatrixWrapper::matrix
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::matrix
 
      * Квадратная матрица
      
 end note
 
-note left of MatrixWrapper::MatrixWrapper(int,double[])
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::MatrixWrapper(int,double[])
 
      * Конструктор квадратной матрицы из одномерного массива значений.
      *
@@ -793,7 +793,7 @@ note left of MatrixWrapper::MatrixWrapper(int,double[])
      * @param base одномерный массив, содержащий элементы матрицы.
      
 end note
-note right of MatrixWrapper::MatrixWrapper(int,double[][])
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::MatrixWrapper(int,double[][])
 
      * Конструктор квадратной матрицы из двумерного массива значений.
      *
@@ -801,14 +801,14 @@ note right of MatrixWrapper::MatrixWrapper(int,double[][])
      * @param base двумерный массив, содержащий элементы матрицы.
      
 end note
-note left of MatrixWrapper::MatrixWrapper(int)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::MatrixWrapper(int)
 
      * Конструктор для создания нулевой квадратной матрицы.
      *
      * @param n количество строк и столбцов.
      
 end note
-note right of MatrixWrapper::MatrixWrapper(int,boolean)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::MatrixWrapper(int,boolean)
 
      * Конструктор для создания единичной квадратной матрицы.
      *
@@ -816,39 +816,39 @@ note right of MatrixWrapper::MatrixWrapper(int,boolean)
      * @param unit флаг, определяющий создание единичной матрицы (true) или нулевой (false).
      
 end note
-note left of MatrixWrapper::getBase()
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::getBase()
 
      * Получить значения матрицы
      * @return одномерный массив со всеми значениями матрицы
      
 end note
-note right of MatrixWrapper::getRows()
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::getRows()
 
      * Получить количество строк
      *
      * @return значение
      
 end note
-note left of MatrixWrapper::getCols()
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::getCols()
 
      * Получить количество столбцов
      *
      * @return значение
      
 end note
-note right of MatrixWrapper::getMatrix()
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::getMatrix()
 
      * Получит тело матрицы
      *
      * @return матрица - базовый объект
      
 end note
-note left of MatrixWrapper::setMatrix(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::setMatrix(SquareMatrix)
 
      * Изменить тело матрицы
      
 end note
-note right of MatrixWrapper::get(int,int)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::get(int,int)
 
      * Получить элементы по индексу
      *
@@ -857,7 +857,7 @@ note right of MatrixWrapper::get(int,int)
      * @return значение
      
 end note
-note left of MatrixWrapper::set(int,int,double)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::set(int,int,double)
 
      * Изменить значение по индексу
      *
@@ -866,26 +866,26 @@ note left of MatrixWrapper::set(int,int,double)
      * @param value значение
      
 end note
-note right of MatrixWrapper::print()
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::print()
 
      * Вывод матрицы
      
 end note
-note left of MatrixWrapper::newMatrix(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::newMatrix(SquareMatrix)
 
      * Вспомогательный метод
      * @param matrix квадратная матрица
      * @return матрицу с ограниченным значением
      
 end note
-note right of MatrixWrapper::add(T)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::add(T)
 
      * Сложение матриц
      *
      * @param other слагаемое
      
 end note
-note left of MatrixWrapper::added(T)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::added(T)
 
      * Сложение текущей матрицы с другой матрицей.
      *
@@ -893,14 +893,14 @@ note left of MatrixWrapper::added(T)
      * @return новая матрица, содержащая результат сложения.
      
 end note
-note right of MatrixWrapper::subtract(T)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::subtract(T)
 
      * Вычитание матриц
      *
      * @param other вычитаемое
      
 end note
-note left of MatrixWrapper::subtracted(T)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::subtracted(T)
 
      * Вычитание другой матрицы из текущей.
      *
@@ -908,14 +908,14 @@ note left of MatrixWrapper::subtracted(T)
      * @return новая матрица, содержащая результат вычитания.
      
 end note
-note right of MatrixWrapper::multiply(double)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::multiply(double)
 
      * Умножение матрицы на число
      *
      * @param number множитель
      
 end note
-note left of MatrixWrapper::multiplied(double)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::multiplied(double)
 
      * Умножение текущей матрицы на число.
      *
@@ -923,14 +923,14 @@ note left of MatrixWrapper::multiplied(double)
      * @return новая матрица, содержащая результат умножения.
      
 end note
-note right of MatrixWrapper::divide(double)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::divide(double)
 
      * Деление матрицы на число
      *
      * @param number делитель
      
 end note
-note left of MatrixWrapper::divided(double)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::divided(double)
 
      * Деление матрицы на число
      *
@@ -938,26 +938,26 @@ note left of MatrixWrapper::divided(double)
      * @return новая матрица - результат
      
 end note
-note right of MatrixWrapper::toString()
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::toString()
 
      * Вывод в консоль объекта
      *
      * @return текст
      
 end note
-note left of MatrixWrapper::transpose()
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::transpose()
 
      * Транспонирование квадратной матрицы
      
 end note
-note right of MatrixWrapper::transposed()
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::transposed()
 
      * Транспонирование текущей матрицы.
      *
      * @return новая матрица, которая является транспонированной версией текущей.
      
 end note
-note left of MatrixWrapper::pows(int)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::pows(int)
 
      * Возведение матрицы в целую степень.
      *
@@ -965,14 +965,14 @@ note left of MatrixWrapper::pows(int)
      * @return новая матрица, содержащая результат операции.
      
 end note
-note right of MatrixWrapper::multiply(T)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::multiply(T)
 
      * Умножение квадратной матрицы
      *
      * @param matrix матрица-множитель
      
 end note
-note left of MatrixWrapper::multiplied(T)
+note left of ru.cs.vsu.cg.matrix.core.MatrixWrapper::multiplied(T)
 
      * Умножение текущей матрицы на другую матрицу.
      *
@@ -980,7 +980,7 @@ note left of MatrixWrapper::multiplied(T)
      * @return новая матрица, содержащая результат умножения.
      
 end note
-note right of MatrixWrapper::multiplied(E)
+note right of ru.cs.vsu.cg.matrix.core.MatrixWrapper::multiplied(E)
 
      * Умножение квадратной матрицы на вектор-столбец
      *
@@ -989,7 +989,7 @@ note right of MatrixWrapper::multiplied(E)
      
 end note
 
-class VectorC {
+class ru.cs.vsu.cg.matrix.types.VectorC {
 + <<Create>> VectorC(int)
 + <<Create>> VectorC(int,double[])
 # <<Create>> VectorC(Matrix)
@@ -997,10 +997,10 @@ class VectorC {
 + VectorC normalize()
 + double getLength()
 + VectorC crossProduct(VectorC)
-- void validateColumnVector(int,int)
+- void validateColumnVector(int)
 # VectorC newMatrix(Matrix)
 }
-note top of VectorC
+note top of ru.cs.vsu.cg.matrix.types.VectorC
 
  * Класс для работы с векторами-столбцами.
  * <p>
@@ -1009,14 +1009,14 @@ note top of VectorC
  
 end note
 
-note left of VectorC::VectorC(int)
+note left of ru.cs.vsu.cg.matrix.types.VectorC::VectorC(int)
 
      * Создает нулевой вектор-столбец заданной длины.
      *
      * @param n количество элементов (длина вектора).
      
 end note
-note right of VectorC::VectorC(int,double[])
+note right of ru.cs.vsu.cg.matrix.types.VectorC::VectorC(int,double[])
 
      * Создает вектор-столбец с элементами из одномерного массива.
      *
@@ -1024,7 +1024,7 @@ note right of VectorC::VectorC(int,double[])
      * @param base массив элементов вектора.
      
 end note
-note left of VectorC::VectorC(Matrix)
+note left of ru.cs.vsu.cg.matrix.types.VectorC::VectorC(Matrix)
 
      * Создает вектор-столбец на основе общей матрицы.
      *
@@ -1032,7 +1032,7 @@ note left of VectorC::VectorC(Matrix)
      * @throws IllegalArgumentException если базовая матрица не имеет 1 столбец.
      
 end note
-note right of VectorC::multiplied(VectorR)
+note right of ru.cs.vsu.cg.matrix.types.VectorC::multiplied(VectorR)
 
      * Умножение текущего вектора-столбца на вектор-строку.
      *
@@ -1040,21 +1040,21 @@ note right of VectorC::multiplied(VectorR)
      * @return результат умножения в виде прямоугольной матрицы.
      
 end note
-note left of VectorC::normalize()
+note left of ru.cs.vsu.cg.matrix.types.VectorC::normalize()
 
      * Нормализация вектора (приведение длины к единице).
      *
      * @return нормализованный вектор-столбец.
      
 end note
-note right of VectorC::getLength()
+note right of ru.cs.vsu.cg.matrix.types.VectorC::getLength()
 
      * Вычисление длины (нормы) вектора.
      *
      * @return длина вектора.
      
 end note
-note left of VectorC::crossProduct(VectorC)
+note left of ru.cs.vsu.cg.matrix.types.VectorC::crossProduct(VectorC)
 
      * Векторное произведение текущего вектора с другим вектором-столбцом.
      *
@@ -1063,16 +1063,15 @@ note left of VectorC::crossProduct(VectorC)
      * @throws IllegalArgumentException если размеры векторов не соответствуют для операции.
      
 end note
-note right of VectorC::validateColumnVector(int,int)
+note right of ru.cs.vsu.cg.matrix.types.VectorC::validateColumnVector(int)
 
      * Проверяет, что матрица является вектором-столбцом.
      *
-     * @param row количество строк.
      * @param col количество столбцов.
      * @throws IllegalArgumentException если количество столбцов не равно 1.
      
 end note
-note left of VectorC::newMatrix(Matrix)
+note left of ru.cs.vsu.cg.matrix.types.VectorC::newMatrix(Matrix)
 
      * Создает новый вектор-столбец на основе базовой матрицы.
      *
@@ -1081,12 +1080,12 @@ note left of VectorC::newMatrix(Matrix)
      
 end note
 
-class Vector2C {
+class ru.cs.vsu.cg.matrix.typesVectors.Vector2C {
 + <<Create>> Vector2C()
 + <<Create>> Vector2C(double[])
 + Vector2C newMatrix(VectorC)
 }
-note top of Vector2C
+note top of ru.cs.vsu.cg.matrix.typesVectors.Vector2C
 
  * Вектор размерности 2 (двумерный).
  * <p>
@@ -1094,19 +1093,19 @@ note top of Vector2C
  
 end note
 
-note left of Vector2C::Vector2C()
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector2C::Vector2C()
 
      * Конструктор для создания нулевого вектора размерности 2.
      
 end note
-note right of Vector2C::Vector2C(double[])
+note right of ru.cs.vsu.cg.matrix.typesVectors.Vector2C::Vector2C(double[])
 
      * Конструктор для создания вектора размерности 2 с заданными значениями.
      *
      * @param base массив значений, представляющий элементы вектора.
      
 end note
-note left of Vector2C::newMatrix(VectorC)
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector2C::newMatrix(VectorC)
 
      * Создаёт новый вектор-столбец Vector2C на основе другого вектора VectorC.
      *
@@ -1115,12 +1114,12 @@ note left of Vector2C::newMatrix(VectorC)
      
 end note
 
-class Vector3C {
+class ru.cs.vsu.cg.matrix.typesVectors.Vector3C {
 + <<Create>> Vector3C()
 + <<Create>> Vector3C(double[])
 + Vector3C newMatrix(VectorC)
 }
-note top of Vector3C
+note top of ru.cs.vsu.cg.matrix.typesVectors.Vector3C
 
  * Вектор размерности 3 (трехмерный).
  * <p>
@@ -1128,14 +1127,14 @@ note top of Vector3C
  
 end note
 
-note left of Vector3C::Vector3C()
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector3C::Vector3C()
 
      * Конструктор для создания нулевого вектора размерности 3.
      * <p>
      * Инициализирует вектор размерностью 3 с нулевыми значениями.
      
 end note
-note right of Vector3C::Vector3C(double[])
+note right of ru.cs.vsu.cg.matrix.typesVectors.Vector3C::Vector3C(double[])
 
      * Конструктор для создания вектора размерности 3 с заданными значениями.
      * <p>
@@ -1144,7 +1143,7 @@ note right of Vector3C::Vector3C(double[])
      * @param base массив значений, представляющий элементы вектора.
      
 end note
-note left of Vector3C::newMatrix(VectorC)
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector3C::newMatrix(VectorC)
 
      * Вспомогательный метод для создания нового объекта Vector3C.
      * <p>
@@ -1155,11 +1154,17 @@ note left of Vector3C::newMatrix(VectorC)
      
 end note
 
-class Main {
+class ru.cs.vsu.cg.matrix.Main {
 + {static} void main(String[])
 }
+note top of ru.cs.vsu.cg.matrix.Main
 
-abstract class AbstractMatrix {
+ * Некоторые примеры использования библиотеки
+ 
+end note
+
+
+abstract class ru.cs.vsu.cg.matrix.core.AbstractMatrix {
 # Matrix matrix
 + <<Create>> AbstractMatrix(int,int)
 + <<Create>> AbstractMatrix(int,int,double[])
@@ -1183,8 +1188,10 @@ abstract class AbstractMatrix {
 + void divide(double)
 + T divided(double)
 + String toString()
++ boolean equals(Object)
++ int hashCode()
 }
-note top of AbstractMatrix
+note top of ru.cs.vsu.cg.matrix.core.AbstractMatrix
 
  * Класс обертка для основных типов ->Прямоугольная, Квадратная, Вектор-строка, Вектор-столбец
  *
@@ -1192,13 +1199,13 @@ note top of AbstractMatrix
  
 end note
 
-note left of AbstractMatrix::matrix
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::matrix
 
      * Основной объект, содержащий реализацию логики работы с матрицами.
      
 end note
 
-note left of AbstractMatrix::AbstractMatrix(int,int)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::AbstractMatrix(int,int)
 
      * Базовый абстрактный класс для работы с матрицами различных типов
      * (прямоугольная, квадратная, вектор-строка, вектор-столбец).
@@ -1211,7 +1218,7 @@ note left of AbstractMatrix::AbstractMatrix(int,int)
      * @throws IllegalArgumentException если количество строк или столбцов меньше 1.
      
 end note
-note right of AbstractMatrix::AbstractMatrix(int,int,double[])
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::AbstractMatrix(int,int,double[])
 
      * Конструктор абстрактной матрицы
      *
@@ -1220,7 +1227,7 @@ note right of AbstractMatrix::AbstractMatrix(int,int,double[])
      * @param base одномерный массив - тело матрицы
      
 end note
-note left of AbstractMatrix::AbstractMatrix(int,int,double[][])
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::AbstractMatrix(int,int,double[][])
 
      * Конструктор абстрактной матрицы
      *
@@ -1229,7 +1236,7 @@ note left of AbstractMatrix::AbstractMatrix(int,int,double[][])
      * @param base двумерный массив - тело матрицы
      
 end note
-note right of AbstractMatrix::AbstractMatrix(int,int,boolean)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::AbstractMatrix(int,int,boolean)
 
      * Конструктор единичной матрицы
      *
@@ -1238,40 +1245,40 @@ note right of AbstractMatrix::AbstractMatrix(int,int,boolean)
      * @param unit flag
      
 end note
-note left of AbstractMatrix::getBase()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::getBase()
 
      * Значения матрицы в виде одномерного массива
      *
      * @return одномерный массив значений матрицы
      
 end note
-note right of AbstractMatrix::getRows()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::getRows()
 
      * Получить количество строк
      *
      * @return значение
      
 end note
-note left of AbstractMatrix::getCols()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::getCols()
 
      * Получить количество столбцов
      *
      * @return значение
      
 end note
-note right of AbstractMatrix::getMatrix()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::getMatrix()
 
      * Получит тело матрицы
      *
      * @return матрица - базовый объект
      
 end note
-note left of AbstractMatrix::setMatrix(Matrix)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::setMatrix(Matrix)
 
      * Изменить тело матрицы
      
 end note
-note right of AbstractMatrix::get(int,int)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::get(int,int)
 
      * Получить элементы по индексу
      *
@@ -1280,7 +1287,7 @@ note right of AbstractMatrix::get(int,int)
      * @return значение
      
 end note
-note left of AbstractMatrix::set(int,int,double)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::set(int,int,double)
 
      * Изменить значение по индексу
      *
@@ -1289,12 +1296,12 @@ note left of AbstractMatrix::set(int,int,double)
      * @param value значение
      
 end note
-note right of AbstractMatrix::print()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::print()
 
      * Вывод матрицы
      
 end note
-note left of AbstractMatrix::newMatrix(Matrix)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::newMatrix(Matrix)
 
      * Метод -> вспомогательный
      *
@@ -1302,14 +1309,14 @@ note left of AbstractMatrix::newMatrix(Matrix)
      * @return конкретный объект матрицу
      
 end note
-note right of AbstractMatrix::add(T)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::add(T)
 
      * Сложение матриц
      *
      * @param other слагаемое
      
 end note
-note left of AbstractMatrix::added(T)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::added(T)
 
      * Сложение матриц
      *
@@ -1317,14 +1324,14 @@ note left of AbstractMatrix::added(T)
      * @return новая матрица - результат
      
 end note
-note right of AbstractMatrix::subtract(T)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::subtract(T)
 
      * Вычитание матриц
      *
      * @param other вычитаемое
      
 end note
-note left of AbstractMatrix::subtracted(T)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::subtracted(T)
 
      * Вычитание матриц
      *
@@ -1332,14 +1339,14 @@ note left of AbstractMatrix::subtracted(T)
      * @return новая матрица - результат
      
 end note
-note right of AbstractMatrix::multiply(double)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::multiply(double)
 
      * Умножение матрицы на число
      *
      * @param number множитель
      
 end note
-note left of AbstractMatrix::multiplied(double)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::multiplied(double)
 
      * Умножение матрицы на число
      *
@@ -1347,14 +1354,14 @@ note left of AbstractMatrix::multiplied(double)
      * @return новая матрица - результат
      
 end note
-note right of AbstractMatrix::divide(double)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::divide(double)
 
      * Деление матрицы на число
      *
      * @param number делитель
      
 end note
-note left of AbstractMatrix::divided(double)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::divided(double)
 
      * Деление матрицы на число
      *
@@ -1362,15 +1369,23 @@ note left of AbstractMatrix::divided(double)
      * @return новая матрица - результат
      
 end note
-note right of AbstractMatrix::toString()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix::toString()
 
      * Вывод в консоль объекта
      *
      * @return текст
      
 end note
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix::equals(Object)
 
-class AbstractMatrix$Matrix {
+     * Сравнение матриц
+     *
+     * @param o с кем сравниваем
+     * @return true or false
+     
+end note
+
+class ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix {
 - int rows
 - int cols
 - double[] base
@@ -1405,7 +1420,7 @@ class AbstractMatrix$Matrix {
 + Matrix crossProduct(Matrix)
 + Matrix normalize()
 }
-note top of AbstractMatrix$Matrix
+note top of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix
 
      * Вложенный класс для реализации базовой логики работы с матрицами.
      * Обеспечивает основные операции, такие как сложение, умножение, транспонирование,
@@ -1415,23 +1430,23 @@ note top of AbstractMatrix$Matrix
      
 end note
 
-note left of AbstractMatrix$Matrix::rows
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::rows
 
          * Строки
          
 end note
-note right of AbstractMatrix$Matrix::cols
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::cols
 
          * Столбцы
          
 end note
-note left of AbstractMatrix$Matrix::base
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::base
 
          * Значения в матрице
          
 end note
 
-note left of AbstractMatrix$Matrix::Matrix(int,int,double[])
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::Matrix(int,int,double[])
 
          * Основной конструктор Матрицы N*M
          *
@@ -1440,7 +1455,7 @@ note left of AbstractMatrix$Matrix::Matrix(int,int,double[])
          * @param base тело матрицы
          
 end note
-note right of AbstractMatrix$Matrix::Matrix(int,int,double[][])
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::Matrix(int,int,double[][])
 
          * Основной конструктор Матрицы N*M
          *
@@ -1449,7 +1464,7 @@ note right of AbstractMatrix$Matrix::Matrix(int,int,double[][])
          * @param base тело матрицы (двумерный массив)
          
 end note
-note left of AbstractMatrix$Matrix::Matrix(int,int)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::Matrix(int,int)
 
          * Конструктор нулевой матрицы
          *
@@ -1457,7 +1472,7 @@ note left of AbstractMatrix$Matrix::Matrix(int,int)
          * @param cols количество столбцов
          
 end note
-note right of AbstractMatrix$Matrix::Matrix(int,int,boolean)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::Matrix(int,int,boolean)
 
          * Конструктор единичной матрицы
          *
@@ -1465,7 +1480,7 @@ note right of AbstractMatrix$Matrix::Matrix(int,int,boolean)
          * @param cols количество столбцов
          
 end note
-note left of AbstractMatrix$Matrix::initialize(int,int,double[])
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::initialize(int,int,double[])
 
          * Метод инициализации параметров матрицы
          *
@@ -1474,29 +1489,21 @@ note left of AbstractMatrix$Matrix::initialize(int,int,double[])
          * @param base значения
          
 end note
-note right of AbstractMatrix$Matrix::equals(Object)
-
-         * Сравнение полей двух матриц
-         *
-         * @param o сравниваемый объект
-         * @return true or false
-         
-end note
-note left of AbstractMatrix$Matrix::hashCode()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::hashCode()
 
          * HASH-код
          *
          * @return значение
          
 end note
-note right of AbstractMatrix$Matrix::toString()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::toString()
 
          * Красивый вывод матрицы
          *
          * @return Текст
          
 end note
-note left of AbstractMatrix$Matrix::get(int,int)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::get(int,int)
 
          * Получение элемента матрицы по индексам
          *
@@ -1505,7 +1512,7 @@ note left of AbstractMatrix$Matrix::get(int,int)
          * @return значение
          
 end note
-note right of AbstractMatrix$Matrix::validateIndex(int,int)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::validateIndex(int,int)
 
          * Метод проверки корректности индексов
          *
@@ -1513,63 +1520,63 @@ note right of AbstractMatrix$Matrix::validateIndex(int,int)
          * @param col столбец
          
 end note
-note left of AbstractMatrix$Matrix::getRows()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::getRows()
 
          * Получить количество строк для данной матрицы
          *
          * @return количество строк [>0]
          
 end note
-note right of AbstractMatrix$Matrix::getCols()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::getCols()
 
          * Получить количество столбцов для данной матрицы
          *
          * @return количество столбцов [>0]
          
 end note
-note left of AbstractMatrix$Matrix::getBase()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::getBase()
 
          * Получить тело матрицы
          *
          * @return double[] тело матрицы
          
 end note
-note right of AbstractMatrix$Matrix::setRows(int)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::setRows(int)
 
          * Установить значение строк в матрице
          *
          * @param rows количество строк [>0]
          
 end note
-note left of AbstractMatrix$Matrix::setCols(int)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::setCols(int)
 
          * Установить значение столбцов в матрице
          *
          * @param cols количество столбцов [>0]
          
 end note
-note right of AbstractMatrix$Matrix::setBase(double[])
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::setBase(double[])
 
          * Изменение тела матрицы (новый массив)
          *
          * @param base новый массив
          
 end note
-note left of AbstractMatrix$Matrix::print()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::print()
 
          * Вывод матрицы в консоль в виде <p>
          * <p>[A11, A12,<p>
          * A21, A22]
          
 end note
-note right of AbstractMatrix$Matrix::transposed()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::transposed()
 
          * Метод для транспонирования матрицы
          *
          * @return транспонированная матрица
          
 end note
-note left of AbstractMatrix$Matrix::multiplied(Matrix)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::multiplied(Matrix)
 
          * Умножение текущей матрицы на другую матрицу.
          *
@@ -1582,13 +1589,13 @@ note left of AbstractMatrix$Matrix::multiplied(Matrix)
          *                                  <p>
          *                                  Пример:
          *                                  <pre>{@code
-         *                                                                                                    Matrix m1 = new Matrix(2, 3, new double[] {1, 2, 3, 4, 5, 6});
-         *                                                                                                    Matrix m2 = new Matrix(3, 2, new double[] {7, 8, 9, 10, 11, 12});
-         *                                                                                                    Matrix result = m1.multiplied(m2);
-         *                                                                                                    }</pre>
+         *                                                                                                                                                                                                                                                                                                          Matrix m1 = new Matrix(2, 3, new double[] {1, 2, 3, 4, 5, 6});
+         *                                                                                                                                                                                                                                                                                                          Matrix m2 = new Matrix(3, 2, new double[] {7, 8, 9, 10, 11, 12});
+         *                                                                                                                                                                                                                                                                                                          Matrix result = m1.multiplied(m2);
+         *                                                                                                                                                                                                                                                                                                          }</pre>
          
 end note
-note right of AbstractMatrix$Matrix::multiplied(double)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::multiplied(double)
 
          * Умножение матрицы на число
          *
@@ -1596,7 +1603,7 @@ note right of AbstractMatrix$Matrix::multiplied(double)
          * @return результат умножения - матрица
          
 end note
-note left of AbstractMatrix$Matrix::added(Matrix)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::added(Matrix)
 
          * Сложение матриц
          *
@@ -1604,7 +1611,7 @@ note left of AbstractMatrix$Matrix::added(Matrix)
          * @return результат сложения
          
 end note
-note right of AbstractMatrix$Matrix::subtracted(Matrix)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::subtracted(Matrix)
 
          * Вычитание матриц
          *
@@ -1612,7 +1619,7 @@ note right of AbstractMatrix$Matrix::subtracted(Matrix)
          * @return результат вычитания - матрица
          
 end note
-note left of AbstractMatrix$Matrix::divided(double)
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::divided(double)
 
          * Деление матрицы на число
          *
@@ -1620,14 +1627,14 @@ note left of AbstractMatrix$Matrix::divided(double)
          * @return результат матрица
          
 end note
-note right of AbstractMatrix$Matrix::createUnitMatrix()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::createUnitMatrix()
 
          * Создание единичной матрицы на основе текущей
          *
          * @return единичная матрица
          
 end note
-note left of AbstractMatrix$Matrix::unwrap(double[][])
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::unwrap(double[][])
 
          * Приватный метод для преобразования двумерного массива в одномерный
          *
@@ -1635,7 +1642,7 @@ note left of AbstractMatrix$Matrix::unwrap(double[][])
          * @return одномерный массив
          
 end note
-note right of AbstractMatrix$Matrix::pows(int)
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::pows(int)
 
          * Возведение квадратной матрицы в степень.
          * Использует алгоритм быстрого возведения в степень.
@@ -1648,19 +1655,19 @@ note right of AbstractMatrix$Matrix::pows(int)
          *                                  <p></p>
          *                                  Пример:
          *                                  <pre>{@code
-         * Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
-         * Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
-         * }</pre>
+         *                                                                                                                                                                                                       Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
+         *                                                                                                                                                                                                       Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
+         *                                                                                                                                                                                                       }</pre>
          
 end note
-note left of AbstractMatrix$Matrix::getLength()
+note right of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::getLength()
 
          * Метод вычисления длинны вектора
          *
          * @return число
          
 end note
-note right of AbstractMatrix$Matrix::normalize()
+note left of ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix::normalize()
 
          * Нормализация вектора (приведение к единичной длине).
          * Доступно только для векторов.
@@ -1670,19 +1677,19 @@ note right of AbstractMatrix$Matrix::normalize()
          
 end note
 
-class MatrixUtils {
+class ru.cs.vsu.cg.matrix.core.MatrixUtils {
 + {static} double dotProduct(T,T,double)
 + {static} T add(T)
 + {static} T multiplied(T)
 }
-note top of MatrixUtils
+note top of ru.cs.vsu.cg.matrix.core.MatrixUtils
 
- * Утилитный класс MatrixUtils предоставляет методы для работы с векторами и матрицами.
+ * Класс MatrixUtils предоставляет методы для работы с векторами и матрицами.
  * Методы реализуют операции, такие как скалярное произведение векторов, сложение векторов и умножение матриц.
  
 end note
 
-note left of MatrixUtils::dotProduct(T,T,double)
+note left of ru.cs.vsu.cg.matrix.core.MatrixUtils::dotProduct(T,T,double)
 
      * Вычисляет скалярное произведение двух векторов на основе их длин и угла между ними.
      *
@@ -1693,7 +1700,7 @@ note left of MatrixUtils::dotProduct(T,T,double)
      * @return Скалярное произведение двух векторов.
      
 end note
-note right of MatrixUtils::add(T)
+note right of ru.cs.vsu.cg.matrix.core.MatrixUtils::add(T)
 
      * Складывает несколько векторов и возвращает результирующий вектор.
      * Вектор, переданный первым, будет модифицирован, чтобы содержать сумму всех векторов.
@@ -1703,7 +1710,7 @@ note right of MatrixUtils::add(T)
      * @return Результат сложения всех векторов.
      
 end note
-note left of MatrixUtils::multiplied(T)
+note left of ru.cs.vsu.cg.matrix.core.MatrixUtils::multiplied(T)
 
      * Выполняет последовательное умножение нескольких матриц.
      * Матрица, переданная первой, будет модифицирована, чтобы содержать результат умножения всех матриц.
@@ -1714,7 +1721,7 @@ note left of MatrixUtils::multiplied(T)
      
 end note
 
-class VectorR {
+class ru.cs.vsu.cg.matrix.types.VectorR {
 + <<Create>> VectorR(int)
 + <<Create>> VectorR(int,double[])
 # <<Create>> VectorR(Matrix)
@@ -1723,10 +1730,10 @@ class VectorR {
 + double multiplied(VectorC)
 + VectorR normalize()
 + double getLength()
-- void validateRowVector(int,int)
+- void validateRowVector(int)
 # VectorR newMatrix(Matrix)
 }
-note top of VectorR
+note top of ru.cs.vsu.cg.matrix.types.VectorR
 
  * Класс для работы с векторами-строками.
  * <p>
@@ -1735,14 +1742,14 @@ note top of VectorR
  
 end note
 
-note left of VectorR::VectorR(int)
+note left of ru.cs.vsu.cg.matrix.types.VectorR::VectorR(int)
 
      * Создает нулевой вектор-строку заданной длины.
      *
      * @param n количество элементов (длина вектора).
      
 end note
-note right of VectorR::VectorR(int,double[])
+note right of ru.cs.vsu.cg.matrix.types.VectorR::VectorR(int,double[])
 
      * Создает вектор-строку с элементами из одномерного массива.
      *
@@ -1750,7 +1757,7 @@ note right of VectorR::VectorR(int,double[])
      * @param base массив элементов вектора.
      
 end note
-note left of VectorR::VectorR(Matrix)
+note left of ru.cs.vsu.cg.matrix.types.VectorR::VectorR(Matrix)
 
      * Создает вектор-строку на основе общей матрицы.
      *
@@ -1758,7 +1765,7 @@ note left of VectorR::VectorR(Matrix)
      * @throws IllegalArgumentException если базовая матрица не является вектором-строкой.
      
 end note
-note right of VectorR::multiplied(SquareMatrix)
+note right of ru.cs.vsu.cg.matrix.types.VectorR::multiplied(SquareMatrix)
 
      * Умножение текущего вектора-строки на квадратную матрицу.
      *
@@ -1766,7 +1773,7 @@ note right of VectorR::multiplied(SquareMatrix)
      * @return результат умножения в виде нового вектора-строки.
      
 end note
-note left of VectorR::multiplied(RecMatrix)
+note left of ru.cs.vsu.cg.matrix.types.VectorR::multiplied(RecMatrix)
 
      * Умножение текущего вектора-строки на прямоугольную матрицу.
      *
@@ -1774,7 +1781,7 @@ note left of VectorR::multiplied(RecMatrix)
      * @return результат умножения в виде нового вектора-строки.
      
 end note
-note right of VectorR::multiplied(VectorC)
+note right of ru.cs.vsu.cg.matrix.types.VectorR::multiplied(VectorC)
 
      * Скалярное произведение текущего вектора-строки и вектора-столбца.
      *
@@ -1782,30 +1789,29 @@ note right of VectorR::multiplied(VectorC)
      * @return результат умножения (скаляр).
      
 end note
-note left of VectorR::normalize()
+note left of ru.cs.vsu.cg.matrix.types.VectorR::normalize()
 
      * Нормализация вектора-строки (приведение длины к единице).
      *
      * @return нормализованный вектор-строка.
      
 end note
-note right of VectorR::getLength()
+note right of ru.cs.vsu.cg.matrix.types.VectorR::getLength()
 
      * Вычисление длины (нормы) вектора-строки.
      *
      * @return длина вектора.
      
 end note
-note left of VectorR::validateRowVector(int,int)
+note left of ru.cs.vsu.cg.matrix.types.VectorR::validateRowVector(int)
 
      * Проверяет, что матрица является вектором-строкой.
      *
      * @param row количество строк.
-     * @param col количество столбцов.
      * @throws IllegalArgumentException если количество строк не равно 1.
      
 end note
-note right of VectorR::newMatrix(Matrix)
+note right of ru.cs.vsu.cg.matrix.types.VectorR::newMatrix(Matrix)
 
      * Создает новый вектор-строку на основе базовой матрицы.
      *
@@ -1814,14 +1820,14 @@ note right of VectorR::newMatrix(Matrix)
      
 end note
 
-class Matrix4D {
+class ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D {
 + <<Create>> Matrix4D(double[][])
 + <<Create>> Matrix4D(double[])
 + <<Create>> Matrix4D()
 + <<Create>> Matrix4D(boolean)
 # Matrix4D newMatrix(SquareMatrix)
 }
-note top of Matrix4D
+note top of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D
 
  * Класс для работы с матрицами размером 4x4.
  * <p>
@@ -1830,33 +1836,33 @@ note top of Matrix4D
  
 end note
 
-note left of Matrix4D::Matrix4D(double[][])
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D::Matrix4D(double[][])
 
      * Конструктор для создания матрицы 4x4 из двумерного массива.
      *
      * @param base двумерный массив, представляющий значения матрицы 4x4.
      
 end note
-note right of Matrix4D::Matrix4D(double[])
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D::Matrix4D(double[])
 
      * Конструктор для создания матрицы 4x4 из одномерного массива.
      *
      * @param base одномерный массив, представляющий значения матрицы 4x4.
      
 end note
-note left of Matrix4D::Matrix4D()
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D::Matrix4D()
 
      * Конструктор для создания нулевой матрицы 4x4.
      
 end note
-note right of Matrix4D::Matrix4D(boolean)
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D::Matrix4D(boolean)
 
      * Конструктор для создания единичной матрицы 4x4.
      *
      * @param unit если true, создаётся единичная матрица, если false — нулевая.
      
 end note
-note left of Matrix4D::newMatrix(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D::newMatrix(SquareMatrix)
 
      * Метод для создания нового объекта Matrix4D на основе SquareMatrix.
      *
@@ -1865,12 +1871,12 @@ note left of Matrix4D::newMatrix(SquareMatrix)
      
 end note
 
-class Vector4C {
+class ru.cs.vsu.cg.matrix.typesVectors.Vector4C {
 + <<Create>> Vector4C()
 + <<Create>> Vector4C(double[])
 + Vector4C newMatrix(VectorC)
 }
-note top of Vector4C
+note top of ru.cs.vsu.cg.matrix.typesVectors.Vector4C
 
  * Вектор размерности 4 (четырехмерный).
  * <p>
@@ -1878,14 +1884,14 @@ note top of Vector4C
  
 end note
 
-note left of Vector4C::Vector4C()
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector4C::Vector4C()
 
      * Конструктор для создания нулевого вектора размерности 4.
      * <p>
      * Инициализирует вектор размерностью 4 с нулевыми значениями.
      
 end note
-note right of Vector4C::Vector4C(double[])
+note right of ru.cs.vsu.cg.matrix.typesVectors.Vector4C::Vector4C(double[])
 
      * Конструктор для создания вектора размерности 4 с заданными значениями.
      * <p>
@@ -1894,7 +1900,7 @@ note right of Vector4C::Vector4C(double[])
      * @param base массив значений, представляющий элементы вектора.
      
 end note
-note left of Vector4C::newMatrix(VectorC)
+note left of ru.cs.vsu.cg.matrix.typesVectors.Vector4C::newMatrix(VectorC)
 
      * Вспомогательный метод для создания нового объекта Vector4C.
      * <p>
@@ -1905,14 +1911,14 @@ note left of Vector4C::newMatrix(VectorC)
      
 end note
 
-class Matrix3D {
+class ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D {
 + <<Create>> Matrix3D(double[][])
 + <<Create>> Matrix3D(double[])
 + <<Create>> Matrix3D()
 + <<Create>> Matrix3D(boolean)
 # Matrix3D newMatrix(SquareMatrix)
 }
-note top of Matrix3D
+note top of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D
 
  * Класс для работы с матрицами размером 3x3.
  * <p>
@@ -1921,33 +1927,33 @@ note top of Matrix3D
  
 end note
 
-note left of Matrix3D::Matrix3D(double[][])
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D::Matrix3D(double[][])
 
      * Конструктор для создания матрицы 3x3 из двумерного массива.
      *
      * @param base двумерный массив, представляющий значения матрицы 3x3.
      
 end note
-note right of Matrix3D::Matrix3D(double[])
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D::Matrix3D(double[])
 
      * Конструктор для создания матрицы 3x3 из одномерного массива.
      *
      * @param base одномерный массив, представляющий значения матрицы 3x3.
      
 end note
-note left of Matrix3D::Matrix3D()
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D::Matrix3D()
 
      * Конструктор для создания нулевой матрицы 3x3.
      
 end note
-note right of Matrix3D::Matrix3D(boolean)
+note right of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D::Matrix3D(boolean)
 
      * Конструктор для создания единичной матрицы 3x3.
      *
      * @param unit если true, создаётся единичная матрица, если false — нулевая.
      
 end note
-note left of Matrix3D::newMatrix(SquareMatrix)
+note left of ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D::newMatrix(SquareMatrix)
 
      * Метод для создания нового объекта Matrix3D на основе SquareMatrix.
      *
@@ -1958,15 +1964,15 @@ end note
 
 
 
-MatrixWrapper <|-- Matrix2D
-AbstractMatrix <|-- SquareMatrix
-AbstractMatrix <|-- RecMatrix
-AbstractMatrix <|-- VectorC
-VectorWrapperC <|-- Vector2C
-VectorWrapperC <|-- Vector3C
-AbstractMatrix +.. AbstractMatrix$Matrix
-AbstractMatrix <|-- VectorR
-MatrixWrapper <|-- Matrix4D
-VectorWrapperC <|-- Vector4C
-MatrixWrapper <|-- Matrix3D
+ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix2D
+ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.SquareMatrix
+ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.RecMatrix
+ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.VectorC
+ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector2C
+ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector3C
+ru.cs.vsu.cg.matrix.core.AbstractMatrix +.. ru.cs.vsu.cg.matrix.core.AbstractMatrix$Matrix
+ru.cs.vsu.cg.matrix.core.AbstractMatrix <|-- ru.cs.vsu.cg.matrix.types.VectorR
+ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix4D
+ru.cs.vsu.cg.matrix.core.VectorWrapperC <|-- ru.cs.vsu.cg.matrix.typesVectors.Vector4C
+ru.cs.vsu.cg.matrix.core.MatrixWrapper <|-- ru.cs.vsu.cg.matrix.typesMatrix.Matrix3D
 @enduml

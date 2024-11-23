@@ -153,7 +153,7 @@ public class SquareMatrix extends AbstractMatrix<SquareMatrix> {
         if (row != col) {
             throw new IllegalArgumentException("Матрица должна быть квадратной (количество строк должно совпадать с количеством столбцов).");
         }
-        if (row == 1 || col == 1) {
+        if (row == 1) {
             throw new IllegalArgumentException("Квадратная матрица не может быть вектором. Проверьте размеры (должны быть больше 1x1).");
         }
     }

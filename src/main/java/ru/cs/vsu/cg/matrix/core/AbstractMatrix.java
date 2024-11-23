@@ -120,13 +120,21 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
          * @param o сравниваемый объект
          * @return true or false
          */
+
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Matrix matrix = (Matrix) o;
-            return rows == matrix.rows && cols == matrix.cols && Arrays.equals(base, matrix.base);
+            if (this == o) return true; // Проверка на одинаковые ссылки
+            if (!(o instanceof Matrix matrix)) return false; // Проверка, что объект — это Matrix (или его наследник)
+
+            // Сравниваем размеры матриц
+            if (rows != matrix.rows || cols != matrix.cols) {
+                return false;
+            }
+
+            // Сравниваем элементы массива base
+            return Arrays.equals(this.base, matrix.base);
         }
+
 
         /**
          * HASH-код
@@ -336,10 +344,10 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
          *                                  <p>
          *                                  Пример:
          *                                  <pre>{@code
-         *                                                                                                    Matrix m1 = new Matrix(2, 3, new double[] {1, 2, 3, 4, 5, 6});
-         *                                                                                                    Matrix m2 = new Matrix(3, 2, new double[] {7, 8, 9, 10, 11, 12});
-         *                                                                                                    Matrix result = m1.multiplied(m2);
-         *                                                                                                    }</pre>
+         *                                                                                                                                                                                                                                                                                                          Matrix m1 = new Matrix(2, 3, new double[] {1, 2, 3, 4, 5, 6});
+         *                                                                                                                                                                                                                                                                                                          Matrix m2 = new Matrix(3, 2, new double[] {7, 8, 9, 10, 11, 12});
+         *                                                                                                                                                                                                                                                                                                          Matrix result = m1.multiplied(m2);
+         *                                                                                                                                                                                                                                                                                                          }</pre>
          */
         public Matrix multiplied(Matrix matrix) {
             if (getCols() != matrix.getRows()) {
@@ -458,9 +466,9 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
          *                                  <p></p>
          *                                  Пример:
          *                                  <pre>{@code
-         * Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
-         * Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
-         * }</pre>
+         *                                                                                                                                                                                                       Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
+         *                                                                                                                                                                                                       Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
+         *                                                                                                                                                                                                       }</pre>
          */
         public Matrix pows(int n) {
             if (n < 0) {
@@ -707,5 +715,25 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
     @Override
     public String toString() {
         return matrix.toString();
+    }
+
+
+    /**
+     * Сравнение матриц
+     *
+     * @param o с кем сравниваем
+     * @return true or false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractMatrix<?> that = (AbstractMatrix<?>) o;
+        return Objects.equals(matrix, that.matrix);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(matrix);
     }
 }
