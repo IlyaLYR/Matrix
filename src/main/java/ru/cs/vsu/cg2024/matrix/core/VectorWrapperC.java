@@ -1,6 +1,6 @@
-package ru.cs.vsu.cg.matrix.core;
+package ru.cs.vsu.cg2024.matrix.core;
 
-import ru.cs.vsu.cg.matrix.types.VectorC;
+import ru.cs.vsu.cg2024.matrix.types.VectorC;
 
 /**
  * Абстрактный класс-обертка для вектора-столбца фиксированного размера.

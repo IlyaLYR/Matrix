@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import ru.cs.vsu.cg.matrix.types.VectorC;
+import ru.cs.vsu.cg2024.matrix.types.VectorC;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,7 +28,7 @@ public class VectorCTest {
         VectorC vector = new VectorC(3, data);
 
         // Проверяем исключение при делении на 0
-        assertThrows(ArithmeticException.class, () -> vector.divided(0.0));
+        assertThrows(IllegalArgumentException.class, () -> vector.divided(0.0));
     }
 
     @Test

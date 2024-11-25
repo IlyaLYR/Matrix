@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
-import ru.cs.vsu.cg.matrix.types.RecMatrix;
-import ru.cs.vsu.cg.matrix.types.SquareMatrix;
-import ru.cs.vsu.cg.matrix.types.VectorC;
+import ru.cs.vsu.cg2024.matrix.types.RecMatrix;
+import ru.cs.vsu.cg2024.matrix.types.SquareMatrix;
+import ru.cs.vsu.cg2024.matrix.types.VectorC;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

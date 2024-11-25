@@ -1,7 +1,7 @@
-package ru.cs.vsu.cg.matrix.typesVectors;
+package ru.cs.vsu.cg2024.matrix.typesVectors;
 
-import ru.cs.vsu.cg.matrix.core.VectorWrapperC;
-import ru.cs.vsu.cg.matrix.types.VectorC;
+import ru.cs.vsu.cg2024.matrix.core.VectorWrapperC;
+import ru.cs.vsu.cg2024.matrix.types.VectorC;
 
 /**
  * Вектор размерности 3 (трехмерный).

@@ -88,7 +88,8 @@
 ## **Пример использования**
 
 ```java
-import ru.cs.vsu.cg.matrix.types.*;
+import ru.cs.vsu.cg2024.matrix.types.SquareMatrix;
+import ru.cs.vsu.cg2024.matrix.types.VectorC;
 
 public class Main {
     public static void main(String[] args) {

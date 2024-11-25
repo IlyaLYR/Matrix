@@ -1,7 +1,7 @@
 /**
  * * Пакет абстракций для библиотеки Matrix
  */
-package ru.cs.vsu.cg.matrix.core;
+package ru.cs.vsu.cg2024.matrix.core;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -463,12 +463,15 @@ public abstract class AbstractMatrix<T extends AbstractMatrix<T>> {
          * @return матрица, возведённая в степень.
          * @throws IllegalArgumentException если степень отрицательная.
          * @throws IllegalArgumentException если матрица не является квадратной.
-         *                                  <p></p>
-         *                                  Пример:
-         *                                  <pre>{@code
-         *                                                                                                                                                                                                       Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
-         *                                                                                                                                                                                                       Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
-         *                                                                                                                                                                                                       }</pre>
+         * <p>
+         *      Пример:
+         *      <pre>{@code
+         *          Matrix m = new Matrix(2, 2, new double[] {2, 0, 0, 2});
+         *          Matrix result = m.pows(3); // Результат: [8, 0; 0, 8]
+         *          }</pre>
+         * </p>
+         *
+
          */
         public Matrix pows(int n) {
             if (n < 0) {

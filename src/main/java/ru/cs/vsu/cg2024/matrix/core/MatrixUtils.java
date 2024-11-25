@@ -1,4 +1,4 @@
-package ru.cs.vsu.cg.matrix.core;
+package ru.cs.vsu.cg2024.matrix.core;
 
 /**
  * Класс MatrixUtils предоставляет методы для работы с векторами и матрицами.

@@ -1,8 +1,9 @@
-package ru.cs.vsu.cg.matrix;
+package ru.cs.vsu.cg2024.matrix;
 
-import ru.cs.vsu.cg.matrix.types.*;
-import ru.cs.vsu.cg.matrix.typesMatrix.*;
-import ru.cs.vsu.cg.matrix.typesVectors.Vector3C;
+import ru.cs.vsu.cg2024.matrix.types.RecMatrix;
+import ru.cs.vsu.cg2024.matrix.typesMatrix.Matrix2D;
+import ru.cs.vsu.cg2024.matrix.typesMatrix.Matrix3D;
+import ru.cs.vsu.cg2024.matrix.typesVectors.Vector3C;
 
 /**
  * Некоторые примеры использования библиотеки

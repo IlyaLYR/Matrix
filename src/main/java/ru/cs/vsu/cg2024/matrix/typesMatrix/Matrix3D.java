@@ -1,8 +1,8 @@
-package ru.cs.vsu.cg.matrix.typesMatrix;
+package ru.cs.vsu.cg2024.matrix.typesMatrix;
 
-import ru.cs.vsu.cg.matrix.core.MatrixWrapper;
-import ru.cs.vsu.cg.matrix.types.SquareMatrix;
-import ru.cs.vsu.cg.matrix.typesVectors.Vector3C;
+import ru.cs.vsu.cg2024.matrix.core.MatrixWrapper;
+import ru.cs.vsu.cg2024.matrix.types.SquareMatrix;
+import ru.cs.vsu.cg2024.matrix.typesVectors.Vector3C;
 
 
 /**

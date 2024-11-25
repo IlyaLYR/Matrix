@@ -1,6 +1,6 @@
-package ru.cs.vsu.cg.matrix.types;
+package ru.cs.vsu.cg2024.matrix.types;
 
-import ru.cs.vsu.cg.matrix.core.AbstractMatrix;
+import ru.cs.vsu.cg2024.matrix.core.AbstractMatrix;
 
 /**
  * Класс для работы с векторами-столбцами.
