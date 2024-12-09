@@ -108,4 +108,8 @@ public class VectorC extends AbstractMatrix<VectorC> {
     protected VectorC newMatrix(Matrix matrix) {
         return new VectorC(matrix);
     }
+
+    public double dotProduct(VectorC vector) {
+        return getMatrix().dot(vector.getMatrix());
+    }
 }

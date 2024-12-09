@@ -36,4 +36,8 @@ public class Vector2C extends VectorWrapperC<Vector2C> {
     public Vector2C newMatrix(VectorC vector) {
         return new Vector2C(vector.getBase());
     }
+
+    public Vector2C(double x, double y) {
+        super(2, new double[]{x, y});
+    }
 }

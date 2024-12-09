@@ -37,7 +37,6 @@ public abstract class VectorWrapperC<T extends VectorWrapperC<T>> {
     public VectorWrapperC(int n, double[] base) {
         vector = new VectorC(n, base);
     }
-
     // Геттеры и сеттеры
 
     /**
@@ -91,22 +90,20 @@ public abstract class VectorWrapperC<T extends VectorWrapperC<T>> {
      * Получить элемент вектора по индексу.
      *
      * @param row индекс элемента.
-     * @param col индекс столбца (всегда 0 для вектора-столбца).
      * @return значение элемента.
      */
-    public double get(int row, int col) {
-        return vector.get(row, col);
+    public double get(int row) {
+        return vector.get(row, 0);
     }
 
     /**
      * Установить элемент вектора по индексу.
      *
      * @param row   индекс строки.
-     * @param col   индекс столбца (всегда 0).
      * @param value новое значение.
      */
-    public void set(int row, int col, double value) {
-        vector.set(row, col, value);
+    public void set(int row, double value) {
+        vector.set(row, 0, value);
     }
 
     /**
@@ -242,5 +239,9 @@ public abstract class VectorWrapperC<T extends VectorWrapperC<T>> {
     @Override
     public String toString() {
         return vector.toString();
+    }
+
+    public double dotProduct(T other) {
+        return vector.dotProduct(other.getVector());
     }
 }

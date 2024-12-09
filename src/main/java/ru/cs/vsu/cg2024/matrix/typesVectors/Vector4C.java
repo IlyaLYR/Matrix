@@ -42,4 +42,8 @@ public class Vector4C extends VectorWrapperC<Vector4C> {
     public Vector4C newMatrix(VectorC vector) {
         return new Vector4C(vector.getBase());
     }
+
+    public Vector4C(double x, double y, double z, double t) {
+        super(4, new double[]{x, y, z, t});
+    }
 }
